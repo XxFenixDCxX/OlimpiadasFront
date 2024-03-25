@@ -1,0 +1,7 @@
+{
+  "name": "OlimpiadasFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
