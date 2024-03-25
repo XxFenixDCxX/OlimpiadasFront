@@ -1,21 +1,12 @@
-<ion-app>
-  <ion-menu contentId="main-content">
-    <ion-header>
-      <ion-toolbar color="tertiary">
-        <ion-title>Menu Content</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">This is the menu content.</ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button id="menuButton"></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-  </div>
-</ion-app>
+<ion-header>
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button value="all">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
