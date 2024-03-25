@@ -1,12 +1,14 @@
 .img{
     width: 8vw;
-    height: 8vw;
+    height: 6vw;
     display: block;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
 }
 .imgIcon{
     width: 2vw;
     height: 2vw;
+    margin-left: 3vw;
 }
 ul{
     display: flex;
