@@ -1,0 +1,31 @@
+.img{
+    width: 8vw;
+    height: 8vw;
+    display: block;
+    margin: 0 auto;
+}
+.imgIcon{
+    width: 2vw;
+    height: 2vw;
+}
+ul{
+    display: flex;
+    margin-top: 1vw;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+a{
+    margin-left: 0.5vw;
+    text-decoration: none;
+}
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
