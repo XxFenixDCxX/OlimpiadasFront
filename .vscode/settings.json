@@ -1,3 +1,9 @@
 {
-  "typescript.preferences.autoImportFileExcludePatterns": ["@ionic/angular/common", "@ionic/angular/standalone"]
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular/standalone"
+  ],
+  "exportall.config.relExclusion": [
+    "/src/app/modules/home/home-routing.module.ts"
+  ]
 }
