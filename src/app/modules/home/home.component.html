@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<ng-container *ngIf="segmentService.getSelectedSegment() === 'all'; else favoritesComponent">
+    <!-- Componente para la vista "all" -->
+    <p>ADIOS</p>
+  </ng-container>
+  
+  <ng-template #favoritesComponent>
+    <!-- Componente para la vista "favorites" -->
+    <p>Hola</p>
+  </ng-template>
+  
