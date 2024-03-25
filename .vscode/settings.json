@@ -4,6 +4,7 @@
     "@ionic/angular/standalone"
   ],
   "exportall.config.relExclusion": [
-    "/src/app/modules/home/home-routing.module.ts"
+    "/src/app/modules/home/home-routing.module.ts",
+    "/src/app/modules/user-page/user-page-routing.module.ts"
   ]
 }
