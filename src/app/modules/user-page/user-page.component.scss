@@ -1,15 +1,39 @@
 .grid-container {
-    width: 100%;
+    position: relative;
+    margin: auto;
+    align-items: center;
     height: 100%;
+    width: 100%;
     overflow: auto;
-    margin-top: 50px;
 }
 
 .grid-container ion-row ion-col{
-    height: 300px;
-    background-color: #135d54;
-    border: solid 1px #fff;
-    border-radius: 10px;
-    color: #fff;
+    height: 34svh;
+    color: black;
     text-align: center;
 }
+.card{
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+
+.card ion-card-header{
+    box-shadow: 0 1px 0 0 #d7c378;
+}
+
+.card ion-card-content{
+    margin-top: 10px;
+}
+
+.grid-container ion-row .notifications{
+    text-align: start !important;
+    height: fit-content;
+    color: black;
+    text-align: center;
+    box-shadow: none !important;
+}
+
+
