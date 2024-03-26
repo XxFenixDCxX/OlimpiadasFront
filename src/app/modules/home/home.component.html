@@ -1,6 +1,7 @@
 <ion-content >
   <ng-container style="overflow: auto;" *ngIf="segmentService.getSelectedSegment() === 'all'; else favoritesComponent">
     <!-- Componente para la vista "all" -->
+    <app-portada></app-portada>
     <app-timeline></app-timeline>
   </ng-container>
 </ion-content>

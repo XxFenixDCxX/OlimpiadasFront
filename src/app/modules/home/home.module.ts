@@ -4,11 +4,12 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { IonicModule } from '@ionic/angular';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { PortadaComponent } from './components/portada/portada.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, TimelineComponent],
+  declarations: [HomeComponent, TimelineComponent, PortadaComponent],
   imports: [
     CommonModule, HomeRoutingModule, IonicModule
   ]
