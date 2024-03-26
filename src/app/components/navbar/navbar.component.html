@@ -1,14 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="all">
-        <ion-icon name="home-outline"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        <ion-icon name="star-outline"></ion-icon>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <div id="navbar">
+    <a href="#default" id="logo"><img src="../../../assets/logo.png" alt="logo pagina"></a>
+    <div id="navbar-right">
+      <button>
+        <span class="button_top"> Login
+        </span>
+      </button>
+      
+      <button>
+        <span class="button_top"> Register
+        </span>
+      </button>
+    </div>
+  </div>
 </ion-header>
 <div class="container">
   <ion-router-outlet></ion-router-outlet>
