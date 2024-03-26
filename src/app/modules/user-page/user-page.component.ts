@@ -4,10 +4,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss'],
 })
-export class UserPageComponent  implements OnInit {
+export class UserPageComponent implements OnInit {
+  options: String[] = ["2323", "2323", "22323"]
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

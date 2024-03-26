@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { UserPageRoutingModule } from './user-page-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { UserPageComponent } from './user-page.component';
+import { NotificationsComponent } from './components';
 
 @NgModule({
-  declarations: [UserPageComponent],
+  declarations: [UserPageComponent, NotificationsComponent],
   imports: [
     CommonModule,
     UserPageRoutingModule,
-    IonicModule
+    IonicModule,
   ]
 })
 export class UserPageModule { }

@@ -1,0 +1,8 @@
+<ion-button shape="round" (click)="toggleDropdown()">
+  <ion-icon name="notifications-outline"></ion-icon>
+</ion-button>
+<ion-list *ngIf="showDropdown" shape="round" class="notifications-dropdown">
+  <ion-item *ngFor="let item of dropdownItems" (click)="selectItem(item)">
+    {{ item }}
+  </ion-item>
+</ion-list>
