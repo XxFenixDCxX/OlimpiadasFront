@@ -1,19 +1,29 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, MenuController } from '@ionic/angular';
+import { AuthService } from '@auth0/auth0-angular';
+import { IonicModule } from '@ionic/angular';
 import { SegmentService } from 'src/app/services/segment.service';
 
 @Component({
   standalone: true,
   selector: 'app-navbar',
-  imports: [IonicModule, FormsModule],
+  imports: [IonicModule, FormsModule, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
   selectedSegment: string = 'all'
 
-  constructor(private segmentService: SegmentService) {}
+  constructor(private segmentService: SegmentService, public auth: AuthService) {}
+
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+  }
+
+  logout(): void {
+    this.auth.logout();
+  }
 
   // Método para manejar el cambio en el segmento
   segmentChanged(event: CustomEvent) {
