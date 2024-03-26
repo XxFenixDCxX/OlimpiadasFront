@@ -1,10 +1,8 @@
-<ion-content>
-<ng-container *ngIf="segmentService.getSelectedSegment() === 'all'; else favoritesComponent">
-  <!-- Componente para la vista "all" -->
-  <div class="container">
-    <div class="center"><h1 class="center">OLIMPIADAS PARÍS 2024</h1></div>
-  </div>
-</ng-container>
+<ion-content >
+  <ng-container style="overflow: auto;" *ngIf="segmentService.getSelectedSegment() === 'all'; else favoritesComponent">
+    <!-- Componente para la vista "all" -->
+    <app-timeline></app-timeline>
+  </ng-container>
 </ion-content>
 
 <ng-template #favoritesComponent>
