@@ -17,7 +17,6 @@ export class NavbarComponent {
 
   constructor(private segmentService: SegmentService, public auth: AuthService) {}
 
-  // Método para manejar el cambio en el segmento
   segmentChanged(event: CustomEvent) {
     const selectedValue = event.detail.value;
     this.segmentService.setSelectedSegment(selectedValue);
