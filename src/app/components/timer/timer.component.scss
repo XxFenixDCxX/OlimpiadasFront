@@ -1,10 +1,9 @@
 #timer {
-	font-size: 3em;
+	font-size: 3.5em;
 	font-weight: 100;
-	color: #171717;
+	color: black; 
     height: fit-content;
 	width: 100%;
-	color: #171717;
 }
 
 #timer div {
@@ -14,8 +13,9 @@
 	border-radius: 10px;
 	margin: 15px;
 }
-#timer div span {
-	color: #171717;
+
+#timer div span {	
+	color: black;
 	display: block;
 	margin-top: 15px;
 	font-size: .35em;

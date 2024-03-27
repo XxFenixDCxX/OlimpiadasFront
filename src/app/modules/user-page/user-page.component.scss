@@ -3,6 +3,7 @@
     width: 100%;
     margin-top: 80px;
     overflow-y: auto;
+    color: black;
 }
 
 .grid-container ion-row {
@@ -10,13 +11,13 @@
     width: 100%;
 }
 
-.grid-container ion-row ion-col { 
-    color: black;
+.grid-container ion-row ion-col {
     width: 100%;
     text-align: center;
 }
 
 .card {
+    background-color: white;
     justify-content: center;
     text-align: center;
     border-radius: 15px;
@@ -25,12 +26,24 @@
     padding: 16px;
 }
 
-#timer-container{
+#timer-container {
+    background-color: white;
     display: flex;
+    background-color: #ffb845;
+    height: fit-content;
+    justify-content: center;
+    text-align: center;
+    border-radius: 0px 0px 15px 15px;
+    min-height: 100%;
+    padding: 16px;
 }
 
-.card ion-card-header {
+.card ion-card-header ion-card-title {
     box-shadow: 0 1px 0 0 #d7c378;
+}
+
+.card ion-card-header ion-card-title {
+    color: black;
 }
 
 .card ion-card-content {
