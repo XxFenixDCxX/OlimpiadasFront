@@ -15,7 +15,7 @@ import { AuthModule } from '@auth0/auth0-angular';
     domain: 'olimpiadas.eu.auth0.com',
     clientId: '8pVwMYIOg4tpzic1dimziFK55wBs55LJ',
     authorizationParams: {
-      redirect_uri: window.location.origin
+      redirect_uri: 'http://localhost:8100/userpage'
     }
   })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

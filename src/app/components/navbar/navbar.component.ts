@@ -17,14 +17,6 @@ export class NavbarComponent {
 
   constructor(private segmentService: SegmentService, public auth: AuthService) {}
 
-  loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
-  }
-
-  logout(): void {
-    this.auth.logout();
-  }
-
   // Método para manejar el cambio en el segmento
   segmentChanged(event: CustomEvent) {
     const selectedValue = event.detail.value;
@@ -44,5 +36,13 @@ export class NavbarComponent {
       document.getElementById("navbar")!.style.padding = "80px 10px";
       document.getElementById("logo")!.style.fontSize = "35px";
     }
+  }
+
+  logout(): void {
+    this.auth.logout();
+  }
+
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
   }
 }
