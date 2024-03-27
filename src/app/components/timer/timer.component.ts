@@ -2,11 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { interval, map } from 'rxjs';
 
 @Component({
+  standalone: true,
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent  implements OnInit {
+
   time!: {
     days: number;
     hours: number;
@@ -42,7 +44,6 @@ export class TimerComponent  implements OnInit {
     this.time.seconds = secs - mins * 60;
   }
   
-  // Ejecutamos la acción cada segundo, para obtener la diferencia entre el momento actual y el objetivo
   start() {
     return interval(1000).pipe(
       map((x: number) => {
@@ -52,5 +53,6 @@ export class TimerComponent  implements OnInit {
     );
   }
   constructor() { }
+
 
 }
