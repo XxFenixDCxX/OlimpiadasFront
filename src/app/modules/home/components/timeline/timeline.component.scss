@@ -28,9 +28,9 @@ $color6: #aff1b6;
 }
 
 .timeline {
+  background-color: white;
   display: flex;
   flex-direction: column;
-  margin: $margin auto;
   position: relative;
 
   &__event {
