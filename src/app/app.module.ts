@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from '@auth0/auth0-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), NavbarComponent, AppRoutingModule, AuthModule.forRoot({
+  imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), NavbarComponent, AppRoutingModule, AuthModule.forRoot({
     domain: 'olimpiadas.eu.auth0.com',
     clientId: '8pVwMYIOg4tpzic1dimziFK55wBs55LJ',
     authorizationParams: {
