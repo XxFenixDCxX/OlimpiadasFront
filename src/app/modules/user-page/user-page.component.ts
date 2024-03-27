@@ -21,7 +21,7 @@ export class UserPageComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         this.api.getAllUsers().subscribe((data: any) => {
-          console.log(data);
+          console.log("users", data);
         });
       }
     });
