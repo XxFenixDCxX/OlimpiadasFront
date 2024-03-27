@@ -7,7 +7,7 @@ import { interval, map } from 'rxjs';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
-export class TimerComponent  implements OnInit {
+export class TimerComponent implements OnInit {
 
   time!: {
     days: number;
@@ -17,18 +17,18 @@ export class TimerComponent  implements OnInit {
   };
   @Input() finishDateString: string = '2025-12-12';
   finishDate: Date = new Date();
-  
+
   ngOnInit(): void {
     this.time = {
       days: 0, hours: 0, minutes: 0, seconds: 0
     };
-    this.finishDate = new Date(this.finishDateString); 
+    this.finishDate = new Date(this.finishDateString);
 
     this.start().subscribe(_ => console.log("tik"));
   }
 
   updateTime() {
-    
+
     const now = new Date();
     const diff = this.finishDate.getTime() - now.getTime();
     console.log(diff)
@@ -37,13 +37,13 @@ export class TimerComponent  implements OnInit {
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const mins = Math.floor(diff / (1000 * 60));
     const secs = Math.floor(diff / 1000);
-    
+
     this.time.days = days;
     this.time.hours = hours - days * 24;
     this.time.minutes = mins - hours * 60;
     this.time.seconds = secs - mins * 60;
   }
-  
+
   start() {
     return interval(1000).pipe(
       map((x: number) => {
