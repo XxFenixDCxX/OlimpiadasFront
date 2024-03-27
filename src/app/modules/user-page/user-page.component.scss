@@ -4,10 +4,16 @@
     margin-top: 80px;
     overflow-y: auto;
     color: black;
+    overflow: auto;
 }
 
-.grid-container ion-row {
-    min-height: 50%;
+.grid-container #timer-row {
+    height: fit-content;
+    width: 100%;
+}
+
+.grid-container #user-row {
+    height: 70%;
     width: 100%;
 }
 
@@ -27,22 +33,19 @@
 }
 
 #timer-container {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
     background-color: white;
     display: flex;
     background-color: #ffb845;
     height: fit-content;
     justify-content: center;
     text-align: center;
-    border-radius: 0px 0px 15px 15px;
+    border-radius: 15px;
     min-height: 100%;
-    padding: 16px;
 }
 
 .card ion-card-header ion-card-title {
     box-shadow: 0 1px 0 0 #d7c378;
-}
-
-.card ion-card-header ion-card-title {
     color: black;
 }
 
