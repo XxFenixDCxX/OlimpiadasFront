@@ -1,14 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
 })
-export class TimelineComponent  implements OnInit {
+export class TimelineComponent  implements AfterViewInit {
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
 
-  ngOnInit() {}
+  ngAfterViewInit(): void {
+    const timelineEvents = this.elementRef.nativeElement.querySelectorAll('.timeline__event');
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5 // El porcentaje del elemento que debe ser visible para disparar el evento
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = entry.target.getAttribute('data-index');
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    timelineEvents.forEach((event: Element) => {
+      observer.observe(event);
+    });
+  }
 
 }
