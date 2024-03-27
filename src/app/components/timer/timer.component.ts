@@ -24,14 +24,14 @@ export class TimerComponent implements OnInit {
     };
     this.finishDate = new Date(this.finishDateString);
 
-    this.start().subscribe(_ => console.log("tik"));
+    this.start().subscribe(_ => () => {});
   }
 
   updateTime() {
 
     const now = new Date();
     const diff = this.finishDate.getTime() - now.getTime();
-    console.log(diff)
+    //console.log(diff)
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor(diff / (1000 * 60 * 60));
