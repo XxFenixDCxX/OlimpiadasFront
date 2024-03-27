@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -16,8 +17,8 @@ export class NotificationsComponent  implements OnInit {
   }
 
   selectItem(item: string) {
-    this.buttonText = item;
-    this.showDropdown = false; 
+    console.log('Selected Item:', item);
+    this.showDropdown = false;
   }
 
   constructor() { }
