@@ -36,7 +36,6 @@ export class UserPageComponent implements OnInit {
           })
         ).subscribe((data) => {
           this.auth.user$.subscribe(user => {
-            console.log("llega")
             var sub = user?.sub;
             data.forEach(element => {
               if(element.sub == sub) {
