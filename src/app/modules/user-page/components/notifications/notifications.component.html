@@ -1,8 +1,11 @@
-<ion-button id="notification-button" shape="round" (click)="toggleDropdown()">
-  <ion-icon name="notifications-outline"></ion-icon>
-</ion-button>
-<ion-list *ngIf="showDropdown" shape="round" id="notifications-dropdown">
-  <div *ngFor="let item of dropdownItems" (click)="selectItem(item)">
-    {{ item }}
-  </div>
-</ion-list>
+<ion-fab #fabButton slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button>
+    <ion-icon name="notifications-outline"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="start">
+    <ion-item *ngFor="let item of dropdownItems.slice().reverse()" (click)="selectItem(item); fabButton.close()">
+      {{ item }}
+    </ion-item>
+  </ion-fab-list>
+</ion-fab>

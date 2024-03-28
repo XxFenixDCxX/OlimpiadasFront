@@ -4,6 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { catchError } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
+import { NavbarComponent } from 'src/app/components';
 
 @Component({
   selector: 'app-user-page',
@@ -13,15 +14,21 @@ import { of, throwError } from 'rxjs';
 export class UserPageComponent implements OnInit {
   options: String[] = ["2323", "2323", "22323"];
   isAuthenticated: boolean = false;
+  isPurchasePeriod: boolean = true;
 
-  constructor(private auth: AuthService, private router: Router, private api:ApiService) { }
+  constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {
+
+  }
 
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.isAuthenticated = isAuthenticated;
       if (!this.isAuthenticated) {
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
+        //toDoEliminar el desactivar navbar aqui
+        this.navbar.showNavbar = false;
       } else {
+        this.navbar.showNavbar = false;
         var exist = false;
         this.api.getAllUsers().pipe(
           catchError(error => {
@@ -49,5 +56,9 @@ export class UserPageComponent implements OnInit {
         });
       }
     });
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

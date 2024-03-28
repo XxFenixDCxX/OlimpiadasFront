@@ -16,6 +16,7 @@ import { SegmentService } from 'src/app/services/segment.service';
 
 export class NavbarComponent {
   selectedSegment: string = 'all'
+  showNavbar: boolean = true;
 
   constructor(private segmentService: SegmentService) {}
 

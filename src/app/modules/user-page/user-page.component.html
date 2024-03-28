@@ -1,36 +1,49 @@
-<ion-grid class="grid-container">
-  <app-notifications></app-notifications>
-  <ion-row id="timer-row">
-    <ion-col size="12" size-md="12" size-lg="12">
-      <div id="timer-container">
-        <app-timer></app-timer>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row id="user-row">
-    <ion-col size="12" size-md="6" size-lg="6">
-      <div class="card">
-        <ion-card-header>
-          <ion-card-title>Detalles personales</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-label>
-            Here's a small text description for the card content. Nothing more, nothinsdag less.
-          </ion-label>
-        </ion-card-content>
-      </div>
-    </ion-col>
-    <ion-col size="12" size-md="6" size-lg="6">
-      <div class="card">
-        <ion-card-header>
-          <ion-card-title>Subscription management for Paris 2024 communications. </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-label>
-            To modify your subscriptions and to unsubscribed to Paris 2024 communications, please click on "Edit".
-          </ion-label>
-        </ion-card-content>
-      </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-split-pane when="xs" contentId="main">
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png">
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row *ngIf="isPurchasePeriod">
+          <ion-col></ion-col>
+          <ion-col><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row *ngIf="isPurchasePeriod">
+          <ion-col></ion-col>
+          <ion-col><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-content>
+    <ion-footer>
+      <button class="button" (click)="logout()">
+        <span class="button-decor"></span>
+        <div class="button-content">
+            <div class="button__icon">
+              <ion-icon name="exit-outline"></ion-icon>
+            </div>
+            <span class="button__text">Cerrar sesion</span>
+        </div>
+    </button>
+    </ion-footer>
+  </ion-menu>
+
+  <div class="ion-page" id="main">
+    <ion-content class="ion-padding"> Depende de lo seleccionado mostrar un contenido u otro / por defecto el timer </ion-content>
+  </div>
+</ion-split-pane>
+<app-notifications></app-notifications>
