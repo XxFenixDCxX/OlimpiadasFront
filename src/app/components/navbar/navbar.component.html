@@ -1,18 +1,6 @@
 <ion-header>
   <div id="navbar">
-    <a href="/home" id="logo"><img src="../../../assets/logo.png" alt="logo pagina"></a>
-    <div id="navbar-right">
-      <button *ngIf="auth.user$ | async" (click)="logout()">
-        <span class="button_top">
-          Cerrar sesión
-        </span>
-      </button>
-      <button *ngIf="(auth.user$ | async) === null" (click)="loginWithRedirect()">
-        <span class="button_top">
-          Iniciar sesión
-        </span>
-      </button>
-    </div>
+    <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png" alt="logo pagina" id="logo">
   </div>
 </ion-header>
 <div id="container">

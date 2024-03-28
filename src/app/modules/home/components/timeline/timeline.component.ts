@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-timeline',
@@ -7,7 +8,7 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 })
 export class TimelineComponent  implements AfterViewInit {
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef, public auth: AuthService) { }
 
   ngAfterViewInit(): void {
     const timelineEvents = this.elementRef.nativeElement.querySelectorAll('.timeline__event');
@@ -31,5 +32,7 @@ export class TimelineComponent  implements AfterViewInit {
       observer.observe(event);
     });
   }
-
+  loginWithRedirect(): void {
+    this.auth.loginWithRedirect();
+  }
 }

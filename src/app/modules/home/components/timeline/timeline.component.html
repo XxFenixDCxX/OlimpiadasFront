@@ -11,8 +11,18 @@
       <div class="timeline__event__description">
         <p>
           Durante este período, los usuarios pueden registrarse para participar en el sorteo de entradas. La interfaz pública guía a los usuarios a través del proceso de registro y proporciona información relevante sobre la etapa actual del proceso de compra.
+          <br><br>Comienza este proceso Registrandote desde el boton de abajo o visualiza el estado actual del proceso iniciando sesion desde el mismo boton.
         </p>
       </div>
+      <button class="button" style="--clr: #9251ac;" (click)="loginWithRedirect()">
+        <span class="button-decor"></span>
+        <div class="button-content">
+            <div class="button__icon">
+                <ion-icon name="log-in-outline"></ion-icon>
+            </div>
+            <span class="button__text">Iniciar Sesion / Registrarse</span>
+        </div>
+    </button>
     </div>
   </div>
   <div
