@@ -5,7 +5,7 @@ import { UserPageRoutingModule } from './user-page-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { UserPageComponent } from './user-page.component';
 import { NotificationsComponent } from './components';
-import { TimerComponent } from 'src/app/components/timer';
+import { TimerComponent } from 'src/app/modules/user-page/components/timer';
 
 @NgModule({
   declarations: [UserPageComponent, NotificationsComponent],
@@ -13,7 +13,7 @@ import { TimerComponent } from 'src/app/components/timer';
     CommonModule,
     UserPageRoutingModule,
     IonicModule,
-    TimerComponent  
+    TimerComponent
   ]
 })
 export class UserPageModule { }
