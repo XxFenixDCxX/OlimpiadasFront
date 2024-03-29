@@ -48,6 +48,7 @@ export class UserPageComponent implements OnInit {
             data.forEach(element => {
               if(element.sub == sub) {
                 exist = true;
+                //ToDo, Agregar aqui el apartado donde se setean todas las variables en cuestion a los periodos de compra
               }
             });
             if(!exist) {
