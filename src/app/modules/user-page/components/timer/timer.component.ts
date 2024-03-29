@@ -21,7 +21,7 @@ export class TimerComponent implements OnInit {
 
   forWhatText = "Tiempo restante para el sorteo de los slots de compra";
 
-  @Input() finishDateString: string = '2024-03-29 24:00:00';
+  @Input() finishDateString: string = '2024-03-30 24:00:00';
   finishDate: Date = new Date();
 
   constructor(private auth: AuthService) { }
