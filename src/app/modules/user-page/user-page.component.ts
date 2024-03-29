@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { catchError } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
+import { TimerComponent } from './components/timer';
 
 @Component({
   selector: 'app-user-page',
@@ -17,7 +18,7 @@ export class UserPageComponent implements OnInit {
   isPurchasePeriod: boolean = true;
   optionSelected: number = 1;
 
-  constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {
+  constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent, private timer: TimerComponent) {
 
   }
 
@@ -49,6 +50,17 @@ export class UserPageComponent implements OnInit {
               if(element.sub == sub) {
                 exist = true;
                 //ToDo, Agregar aqui el apartado donde se setean todas las variables en cuestion a los periodos de compra
+                if(element.zones.lenght > 0){
+                  if(new Date(element.zones[0].start) < new Date() && new Date() < new Date(element.zones[0].end)){
+                    this.isPurchasePeriod = true;
+                    this.timer.finishDateString = element.zones[0].end;
+                    this.timer.forWhatText = "Tiempo restante para finalizar el primer periodo de compra"
+                  } else if (new Date(element.zones[1].start) < new Date() && new Date() < new Date(element.zones[1].end)){
+                    this.isPurchasePeriod = true;
+                    this.timer.finishDateString = element.zones[1].end;
+                    this.timer.forWhatText = "Tiempo restante para finalizar el segundo periodo de compra"
+                  }
+                }
               }
             });
             if(!exist) {

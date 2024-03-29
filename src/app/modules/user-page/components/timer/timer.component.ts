@@ -30,6 +30,7 @@ export class TimerComponent implements OnInit {
     this.time = {
       days: '00', hours: '00', minutes: '00', seconds: '00'
     };
+    //ToDo agregar comprobacion para saber si esta dentro del periodo de sorteo y cambiar textos a esta en el periodo de sorteo cuando acabe se podra comprar
     this.finishDate = new Date(this.finishDateString);
 
     this.start().subscribe(_ => () => {});
