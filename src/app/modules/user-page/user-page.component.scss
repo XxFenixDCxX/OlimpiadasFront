@@ -1,67 +1,3 @@
-/**
-.grid-container {
-    height: 100%;
-    width: 100%;
-    margin-top: 80px;
-    overflow-y: auto;
-    color: black;
-    overflow: auto;
-}
-
-.grid-container #timer-row {
-    height: fit-content;
-    width: 100%;
-}
-
-.grid-container #user-row {
-    height: 65%;
-    width: 100%;
-}
-
-.grid-container ion-row ion-col {
-    width: 100%;
-    text-align: center;
-}
-
-.card {
-    background-color: white;
-    justify-content: center;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
-    min-height: 100%;
-    padding: 16px;
-}
-
-#timer-container {
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
-    background-color: white;
-    display: flex;
-    background-color: #ffb845;
-    height: fit-content;
-    justify-content: center;
-    text-align: center;
-    border-radius: 15px;
-    min-height: 100%;
-}
-
-.card ion-card-header ion-card-title {
-    box-shadow: 0 1px 0 0 #d7c378;
-    color: black;
-}
-
-.card ion-card-content {
-    margin-top: 10px;
-}
-
-.grid-container ion-row .notifications {
-    text-align: start !important;
-    height: fit-content;
-    color: black;
-    text-align: center;
-    box-shadow: none !important;
-}
-**/
 img {
   max-width: 150px;
   display: block;
@@ -155,4 +91,11 @@ ion-col {
 
 ion-grid {
   margin-top: 50%;
+}
+
+ion-content {
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
 }

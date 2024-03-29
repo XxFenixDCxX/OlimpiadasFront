@@ -9,22 +9,22 @@
       <ion-grid>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
+          <ion-col (click)="selectedOption(1)"><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row *ngIf="isPurchasePeriod">
           <ion-col></ion-col>
-          <ion-col><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
+          <ion-col (click)="selectedOption(2)"><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row *ngIf="isPurchasePeriod">
           <ion-col></ion-col>
-          <ion-col><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
+          <ion-col (click)="selectedOption(2)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
+          <ion-col (click)="selectedOption(2)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
           <ion-col></ion-col>
         </ion-row>
       </ion-grid>
@@ -43,7 +43,10 @@
   </ion-menu>
 
   <div class="ion-page" id="main">
-    <ion-content class="ion-padding"> Depende de lo seleccionado mostrar un contenido u otro / por defecto el timer </ion-content>
+    <ion-content class="ion-padding">
+        <app-timer *ngIf="optionSelected === 1"></app-timer>
+    </ion-content>
+
   </div>
 </ion-split-pane>
 <app-notifications></app-notifications>

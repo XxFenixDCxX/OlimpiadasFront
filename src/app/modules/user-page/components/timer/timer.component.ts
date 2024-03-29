@@ -1,26 +1,34 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { interval, map } from 'rxjs';
+import { IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   standalone: true,
   selector: 'app-timer',
+  imports: [IonIcon],
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
 export class TimerComponent implements OnInit {
 
   time!: {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
+    days: string;
+    hours: string;
+    minutes: string;
+    seconds: string;
   };
-  @Input() finishDateString: string = '2025-12-12';
+
+  forWhatText = "Tiempo restante para el sorteo de los slots de compra";
+
+  @Input() finishDateString: string = '2024-03-29 24:00:00';
   finishDate: Date = new Date();
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
     this.time = {
-      days: 0, hours: 0, minutes: 0, seconds: 0
+      days: '00', hours: '00', minutes: '00', seconds: '00'
     };
     this.finishDate = new Date(this.finishDateString);
 
@@ -28,20 +36,22 @@ export class TimerComponent implements OnInit {
   }
 
   updateTime() {
+    const diff = this.finishDate.getTime() - Date.now();
 
-    const now = new Date();
-    const diff = this.finishDate.getTime() - now.getTime();
-    //console.log(diff)
+		var secs = Math.floor((diff/1000) % 60);
+		var mins = Math.floor((diff/(1000*60)) % 60);
+    var hours = Math.floor((diff/(1000*60*60)) % 24);
+		var days = Math.floor((diff/(1000*60*60*24)) % 365);
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const mins = Math.floor(diff / (1000 * 60));
-    const secs = Math.floor(diff / 1000);
+    this.time.days = this.padLeft(days);
+    this.time.hours = this.padLeft(hours);
+    this.time.minutes = this.padLeft(mins);
+    this.time.seconds = this.padLeft(secs);
+  }
 
-    this.time.days = days;
-    this.time.hours = hours - days * 24;
-    this.time.minutes = mins - hours * 60;
-    this.time.seconds = secs - mins * 60;
+
+  padLeft(num: number): string {
+    return num < 10 ? '0' + num : num.toString();
   }
 
   start() {
@@ -52,7 +62,4 @@ export class TimerComponent implements OnInit {
       })
     );
   }
-  constructor() { }
-
-
 }

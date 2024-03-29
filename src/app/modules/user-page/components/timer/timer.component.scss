@@ -1,23 +1,55 @@
 #timer {
+  background-image: url('../../../../../assets/pag_principal.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 	font-size: 3.5em;
-	font-weight: 100;
-	color: black; 
-    height: fit-content;
+	font-weight: bold;
+	color: black;
 	width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#timer strong {
+  background-color: rgba(16, 54, 222);
+  border-radius: 10%;
+  padding: 8px;
+}
+
+#timer p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: normal;
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px rgba(16, 54, 222, 0.9));
+  color: white;
 }
 
 #timer div {
+  margin-top: 0px !important;
 	display: inline-block;
 	min-width: 90px;
 	padding: 15px;
 	border-radius: 10px;
-	margin: 15px;
+  margin: 15px;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.9));
 }
 
-#timer div span {	
-	color: black;
+#timer div span {
+  margin-top: 10px !important;
+	color: white;
 	display: block;
 	margin-top: 15px;
+  background-color: none;
 	font-size: .35em;
 	font-weight: 400;
+  filter: drop-shadow(0 0 4px rgba(16, 54, 222, 0.9));
+}
+
+ion-icon {
+  color: purple;
 }

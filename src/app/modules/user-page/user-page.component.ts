@@ -15,6 +15,7 @@ export class UserPageComponent implements OnInit {
   options: String[] = ["2323", "2323", "22323"];
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = true;
+  optionSelected: number = 1;
 
   constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {
 
@@ -60,5 +61,9 @@ export class UserPageComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  selectedOption(option: number){
+    this.optionSelected = option;
   }
 }

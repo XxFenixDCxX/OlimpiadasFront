@@ -1,6 +1,9 @@
 <div id="timer">
-  <div>{{ time.days }} <span>Días</span></div>
-  <div>{{ time.hours }} <span>Horas</span></div>
-  <div>{{ time.minutes }} <span>Minutos</span></div>
-  <div>{{ time.seconds }} <span>Segundos</span></div>
+  <div>
+    <p><ion-icon name="time-outline"></ion-icon> {{forWhatText}}</p>
+    <div><strong>{{ time.days }}</strong> <span>Días</span></div>
+    <div><strong>{{ time.hours }}</strong> <span>Horas</span></div>
+    <div><strong>{{ time.minutes }}</strong> <span>Minutos</span></div>
+    <div><strong>{{ time.seconds }}</strong> <span>Segundos</span></div>
+  </div>
 </div>
