@@ -53,7 +53,8 @@ $color7: #7f5af0;
     width: 50vw;
 
     @media screen and (max-width: 767px) {
-      width: auto;
+      width: calc(100% - 2 * $margin);;
+      margin: $spacing auto;
         flex-direction: row-reverse;
         .timeline__event__date {
           border-radius: 0 $bdrs $bdrs 0;
@@ -93,6 +94,7 @@ $color7: #7f5af0;
         }
 
       &:nth-child(2n + 1) {
+        width: auto !important;
         flex-direction: row;
       }
     }
