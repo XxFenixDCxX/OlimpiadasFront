@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
@@ -18,9 +18,17 @@ export class UserPageComponent implements OnInit {
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
+  isTooSmall: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {
+  constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkWindowSize();
+  }
+
+  checkWindowSize() {
+    this.isTooSmall = window.innerWidth < 768;
   }
 
   ngOnInit(): void {
@@ -84,6 +92,7 @@ export class UserPageComponent implements OnInit {
         });
       }
     });
+    this.checkWindowSize();
   }
 
   logout() {

@@ -1,7 +1,9 @@
+<!--Vista de ordenador-->
+<div [hidden]="isTooSmall">
 <ion-split-pane when="xs" contentId="main">
   <ion-menu contentId="main">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar class="boxShadow">
         <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png">
       </ion-toolbar>
     </ion-header>
@@ -38,7 +40,7 @@
             </div>
             <span class="button__text">Cerrar sesion</span>
         </div>
-    </button>
+      </button>
     </ion-footer>
   </ion-menu>
 
@@ -49,4 +51,62 @@
 
   </div>
 </ion-split-pane>
+</div>
+<!--Vista de movil-->
+<div [hidden]="!isTooSmall">
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar class="boxShadow">
+      <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png">
+    </ion-toolbar>
+  </ion-header><ion-content class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col (click)="selectedOption(1)"><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row *ngIf="isPurchasePeriod">
+        <ion-col></ion-col>
+        <ion-col (click)="selectedOption(2)"><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row *ngIf="isPurchasePeriod">
+        <ion-col></ion-col>
+        <ion-col (click)="selectedOption(2)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col (click)="selectedOption(2)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <ion-footer>
+    <button class="button" (click)="logout()">
+      <span class="button-decor"></span>
+      <div class="button-content">
+          <div class="button__icon">
+            <ion-icon name="exit-outline"></ion-icon>
+          </div>
+          <span class="button__text">Cerrar sesion</span>
+      </div>
+    </button>
+  </ion-footer>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <app-timer *ngIf="optionSelected === 1"></app-timer>
+  </ion-content>
+</div>
 <app-notifications></app-notifications>
+</div>

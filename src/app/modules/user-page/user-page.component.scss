@@ -8,8 +8,12 @@ img {
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
 }
 
-ion-toolbar {
-  box-shadow: 0 2px 4px rgba(16, 54, 222, 0.409);
+.boxShadow {
+  box-shadow: 0 2px 4px rgba(16, 54, 222, 0.409) !important;
+}
+
+ion-header ion-toolbar {
+  box-shadow: none;
 }
 
 ion-footer{
