@@ -1,9 +1,10 @@
 <div id="timer">
   <div>
     <p><ion-icon name="time-outline"></ion-icon> {{forWhatText}}</p>
-    <div><strong>{{ time.days }}</strong> <span>Días</span></div>
-    <div><strong>{{ time.hours }}</strong> <span>Horas</span></div>
-    <div><strong>{{ time.minutes }}</strong> <span>Minutos</span></div>
-    <div><strong>{{ time.seconds }}</strong> <span>Segundos</span></div>
+    <h1 *ngIf="finished">Esperemos que haya disfrutado de su compra</h1>
+    <div *ngIf="!finished"><strong>{{ time.days }}</strong> <span>Días</span></div>
+    <div *ngIf="!finished"><strong>{{ time.hours }}</strong> <span>Horas</span></div>
+    <div *ngIf="!finished"><strong>{{ time.minutes }}</strong> <span>Minutos</span></div>
+    <div *ngIf="!finished"><strong>{{ time.seconds }}</strong> <span>Segundos</span></div>
   </div>
 </div>
