@@ -54,47 +54,87 @@ $color7: #7f5af0;
 
     @media screen and (max-width: 767px) {
       width: auto;
+        flex-direction: row-reverse;
+        .timeline__event__date {
+          border-radius: 0 $bdrs $bdrs 0;
+        }
+        .timeline__event__content {
+          width: calc(100% - 2 * #{$spacing});
+          border-radius: $bdrs 0 0 $bdrs;
+        }
+
+        .timeline__event__icon {
+          &:before {
+            content: "";
+            width: 0.125rem;
+            height: 100%;
+            background: $color2;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            right: auto;
+            z-index: -1;
+            transform: translateX(-50%);
+            animation: fillTop 2s forwards 4s ease-in-out;
+          }
+          &:after {
+            content: "";
+            width: 100%;
+            height: 0.125rem;
+            background: $color2;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+            top: 50%;
+            left: auto;
+            transform: translateY(-50%);
+            animation: fillLeft 2s forwards 4s ease-in-out;
+          }
+        }
+
+      &:nth-child(2n + 1) {
+        flex-direction: row;
+      }
     }
     @media screen and (min-width: 767px) {
       margin: $margin 0;
-    }
-
-    &:nth-child(2n + 1) {
-      flex-direction: row-reverse;
-      .timeline__event__date {
-        border-radius: 0 $bdrs $bdrs 0;
-      }
-      .timeline__event__content {
-        width: calc(100% - 2 * #{$spacing});
-        border-radius: $bdrs 0 0 $bdrs;
-      }
-
-      .timeline__event__icon {
-        &:before {
-          content: "";
-          width: 0.125rem;
-          height: 100%;
-          background: $color2;
-          position: absolute;
-          top: 0%;
-          left: 50%;
-          right: auto;
-          z-index: -1;
-          transform: translateX(-50%);
-          animation: fillTop 2s forwards 4s ease-in-out;
+      &:nth-child(2n + 1) {
+        flex-direction: row-reverse;
+        .timeline__event__date {
+          border-radius: 0 $bdrs $bdrs 0;
         }
-        &:after {
-          content: "";
-          width: 100%;
-          height: 0.125rem;
-          background: $color2;
-          position: absolute;
-          right: 0;
-          z-index: -1;
-          top: 50%;
-          left: auto;
-          transform: translateY(-50%);
-          animation: fillLeft 2s forwards 4s ease-in-out;
+        .timeline__event__content {
+          width: calc(100% - 2 * #{$spacing});
+          border-radius: $bdrs 0 0 $bdrs;
+        }
+
+        .timeline__event__icon {
+          &:before {
+            content: "";
+            width: 0.125rem;
+            height: 100%;
+            background: $color2;
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            right: auto;
+            z-index: -1;
+            transform: translateX(-50%);
+            animation: fillTop 2s forwards 4s ease-in-out;
+          }
+          &:after {
+            content: "";
+            width: 100%;
+            height: 0.125rem;
+            background: $color2;
+            position: absolute;
+            right: 0;
+            z-index: -1;
+            top: 50%;
+            left: auto;
+            transform: translateY(-50%);
+            animation: fillLeft 2s forwards 4s ease-in-out;
+          }
         }
       }
     }
