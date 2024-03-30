@@ -1,5 +1,10 @@
-$content-width: calc(40vw - 5.25rem);
+$content-width: calc(90vw - 2 * 1.25rem);
 $margin: 1.25rem;
+$spacing: 1rem;
+$bdrs: 0.5rem;
+$circle-size: 2.5rem;
+$icon-size: 3rem;
+$bdrs-icon: 100%;
 $spacing: 1.25rem;
 $bdrs: 0.5rem;
 $circle-size: 2.5rem;
@@ -21,8 +26,12 @@ $color7: #7f5af0;
 }
 
 .timeline__event {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 1s ease-in-out;
+
+  @media (max-width: 767px) {
+    margin: 0 auto;
+  }
 }
 
 .timeline__event.visible {
@@ -39,10 +48,16 @@ $color7: #7f5af0;
     margin-bottom: $spacing;
     position: relative;
     display: flex;
-    margin: $spacing 0;
     border-radius: $bdrs;
     align-self: center;
     width: 50vw;
+
+    @media screen and (max-width: 767px) {
+      width: auto;
+    }
+    @media screen and (min-width: 767px) {
+      margin: $margin 0;
+    }
 
     &:nth-child(2n + 1) {
       flex-direction: row-reverse;
@@ -50,6 +65,7 @@ $color7: #7f5af0;
         border-radius: 0 $bdrs $bdrs 0;
       }
       .timeline__event__content {
+        width: calc(100% - 2 * #{$spacing});
         border-radius: $bdrs 0 0 $bdrs;
       }
 
@@ -275,6 +291,9 @@ $color7: #7f5af0;
   .timeline__event__icon ion-icon {
     position: absolute;
     font-size: $icon-size;
+    @media (max-width: 767px) {
+      font-size: 20px; // Tamaño del icono para dispositivos móviles
+    }
   }
 
   .button {
@@ -336,6 +355,38 @@ $color7: #7f5af0;
 }
 
 .button__icon{
-  font-size: 24px;
+  font-size: 20px;
   color: white;
+
+}
+
+@media (max-width: 767px) {
+  .timeline__event__icon {
+    padding: 1rem; // Reduzco el padding de los iconos en dispositivos móviles
+  }
+
+  .timeline__event__date {
+    font-size: 1rem; // Reduzco el tamaño de la fecha en dispositivos móviles
+    padding: 0.5rem; // Reduzco el padding de la fecha en dispositivos móviles
+  }
+
+  .timeline__event__content {
+    width: $content-width; // Utilizo la misma anchura que en PC
+    padding: $spacing; // Mantengo el padding
+  }
+
+  .timeline__event__title {
+    font-size: 1rem; // Reduzco el tamaño del título en dispositivos móviles
+  }
+
+  .button {
+    &__icon {
+      width: 40px; // Reduzco el tamaño del icono en dispositivos móviles
+      height: 40px; // Reduzco el tamaño del icono en dispositivos móviles
+    }
+
+    &__text {
+      padding: 2px 1rem 2px; // Ajusto el padding del texto en dispositivos móviles
+    }
+  }
 }
