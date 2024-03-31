@@ -11,17 +11,17 @@ export class TimelineComponent implements AfterViewInit {
   constructor(private elementRef: ElementRef, public auth: AuthService) { }
 
   ngAfterViewInit(): void {
-    if (this.isMobileDevice()) { // Verifica si es un dispositivo móvil
+    if (this.isMobileDevice()) {
       const timelineEvents = this.elementRef.nativeElement.querySelectorAll('.timeline__event');
       timelineEvents.forEach((event: Element) => {
-        event.classList.add('visible'); // Muestra todos los elementos directamente
+        event.classList.add('visible');
       });
-    } else { // Si no es un dispositivo móvil, activa la animación de desplazamiento
+    } else {
       const timelineEvents = this.elementRef.nativeElement.querySelectorAll('.timeline__event');
       const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5 // El porcentaje del elemento que debe ser visible para disparar el evento
+        threshold: 0.5
       };
 
       const observer = new IntersectionObserver((entries, observer) => {
@@ -41,7 +41,7 @@ export class TimelineComponent implements AfterViewInit {
   }
 
   isMobileDevice(): boolean {
-    return window.innerWidth <= 768; // Define el ancho máximo para considerarlo como dispositivo móvil
+    return window.innerWidth <= 768;
   }
 
 
