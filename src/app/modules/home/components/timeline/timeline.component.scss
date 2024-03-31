@@ -53,9 +53,9 @@ $color7: #7f5af0;
     width: 50vw;
 
     @media screen and (max-width: 767px) {
-      width: calc(100% - 2 * $margin);;
+      width: calc(100% - 2 * $spacing);
       margin: $spacing auto;
-        flex-direction: row-reverse;
+      flex-direction: row;
         .timeline__event__date {
           border-radius: 0 $bdrs $bdrs 0;
         }
@@ -94,8 +94,8 @@ $color7: #7f5af0;
         }
 
       &:nth-child(2n + 1) {
-        width: auto !important;
-        flex-direction: row;
+        width: calc(100% - 2 * $spacing);
+        flex-direction: row-reverse;
       }
     }
     @media screen and (min-width: 767px) {
@@ -334,7 +334,7 @@ $color7: #7f5af0;
     position: absolute;
     font-size: $icon-size;
     @media (max-width: 767px) {
-      font-size: 20px; // Tamaño del icono para dispositivos móviles
+      font-size: 20px;
     }
   }
 
@@ -382,7 +382,7 @@ $color7: #7f5af0;
       padding: 2px 1.5rem 2px;
       padding-left: 0.75rem;
       overflow: hidden;
-      white-space: nowrap;
+      white-space: wrap;
       text-overflow: ellipsis;
     }
 
@@ -404,31 +404,33 @@ $color7: #7f5af0;
 
 @media (max-width: 767px) {
   .timeline__event__icon {
-    padding: 1rem; // Reduzco el padding de los iconos en dispositivos móviles
+    padding: 1rem;
   }
 
   .timeline__event__date {
-    font-size: 1rem; // Reduzco el tamaño de la fecha en dispositivos móviles
-    padding: 0.5rem; // Reduzco el padding de la fecha en dispositivos móviles
+    font-size: 1rem;
+    padding: 0.5rem;
   }
 
   .timeline__event__content {
-    width: $content-width; // Utilizo la misma anchura que en PC
-    padding: $spacing; // Mantengo el padding
+    width: $content-width;
+    padding: $spacing;
   }
 
   .timeline__event__title {
-    font-size: 1rem; // Reduzco el tamaño del título en dispositivos móviles
+    font-size: 1rem;
   }
-
   .button {
+    width: calc(100% - 2 * $spacing);
+    position: none !important;
     &__icon {
-      width: 40px; // Reduzco el tamaño del icono en dispositivos móviles
-      height: 40px; // Reduzco el tamaño del icono en dispositivos móviles
+      width: 48px;
+      height: 40px;
     }
 
     &__text {
-      padding: 2px 1rem 2px; // Ajusto el padding del texto en dispositivos móviles
+      padding: 2px 0px 2px !important;
+      padding-left: 0.75rem !important;
     }
   }
 }
