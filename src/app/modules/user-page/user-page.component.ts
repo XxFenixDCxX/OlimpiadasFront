@@ -1,3 +1,4 @@
+import { TimerComponent } from './components/timer/timer.component';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
@@ -5,10 +6,13 @@ import { ApiService } from 'src/app/services/api.service';
 import { catchError } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
-import { TimerComponent } from './components/timer';
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-user-page',
+  imports: [IonicModule, TimerComponent, CommonModule],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
