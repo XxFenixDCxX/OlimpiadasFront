@@ -18,6 +18,7 @@ export class UserPageComponent implements OnInit {
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
+  finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
   isTooSmall: boolean = false;
 
   constructor(private auth: AuthService, private router: Router, private api:ApiService, private navbar: NavbarComponent) {}
@@ -58,7 +59,6 @@ export class UserPageComponent implements OnInit {
             data.forEach(element => {
               if(element.sub == sub) {
                 exist = true;
-                //ToDo, Agregar aqui el apartado donde se setean todas las variables en cuestion a los periodos de compra
                 if(element.zones.lenght > 0){
                   if (new Date("2024-03-30 24:00:00") < new Date()) {
                     if (new Date(element.zones[0].start) < new Date() && new Date() < new Date(element.zones[0].end)){
@@ -85,8 +85,11 @@ export class UserPageComponent implements OnInit {
                 }
               }
             });
-            if(!exist) {
+            if(!exist && this.finishLotteryDateString > new Date()) {
               this.api.createUser({sub: user?.sub, email: user?.email, username: user?.nickname}).subscribe();
+            } else if (!exist && this.finishLotteryDateString < new Date()) {
+              this.router.navigate(['/home']);
+              alert("El sorteo ha finalizado no es posible registrarse");
             }
           });
         });
