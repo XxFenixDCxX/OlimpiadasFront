@@ -24,7 +24,7 @@ export class TimerComponent implements OnInit {
 
   forWhatText = "Tiempo restante para el comienzo del sorteo de los slots de compra";
 
-  @Input() finishDateString: string = '2024-03-01 24:00:00';
+  @Input() finishDateString: string = '2024-03-01 00:00:00';
   finishDate: Date = new Date();
 
   constructor(private user: UserPageComponent) { }
@@ -39,10 +39,9 @@ export class TimerComponent implements OnInit {
       days: '00', hours: '00', minutes: '00', seconds: '00'
     };
 
-
     this.finishDate = new Date(this.finishDateString);
 
-    if (this.finishDate.getTime() === new Date('2024-03-01 24:00:00').getTime() && this.finishDate < new Date()) {
+    if (this.finishDate.getTime() === new Date('2024-03-01 00:00:00').getTime() && this.finishDate < new Date()) {
       this.finishDateString = '2024-03-30 24:00:00';
       this.forWhatText = "Tiempo restante para finalizar el sorteo de los slots de compra";
       this.finishDate = new Date(this.finishDateString);

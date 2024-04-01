@@ -36,9 +36,7 @@ export class UserPageComponent implements OnInit {
     this.auth.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.isAuthenticated = isAuthenticated;
       if (!this.isAuthenticated) {
-        //this.router.navigate(['/home']);
-        //toDoEliminar el desactivar navbar aqui
-        this.navbar.showNavbar = false;
+        this.router.navigate(['/home']);
       } else {
         this.navbar.showNavbar = false;
         var exist = false;
@@ -59,27 +57,33 @@ export class UserPageComponent implements OnInit {
             data.forEach(element => {
               if(element.sub == sub) {
                 exist = true;
-                if(element.zones.lenght > 0){
-                  if (new Date("2024-03-30 24:00:00") < new Date()) {
-                    if (new Date(element.zones[0].start) < new Date() && new Date() < new Date(element.zones[0].end)){
+                if(element.zones.lenght != 0){
+                  if (new Date("2024-03-30 00:00:00") < new Date()) {
+                    if (new Date(element.zones[0].start.date) <= new Date() && new Date() <= new Date(element.zones[0].end.date)){
                       this.isPurchasePeriod = true;
-                      this.timer.finishDateString = element.zones[0].end;
+                      this.timer.finishDate = new Date(element.zones[0].end.date);
                       this.timer.forWhatText = "Tiempo restante para finalizar el primer periodo de compra"
-                    } else if (new Date(element.zones[1].start) < new Date() && new Date() < new Date(element.zones[1].end)){
+                      return;
+                    } else if (new Date(element.zones[1].start.date) <= new Date() && new Date() <= new Date(element.zones[1].end.date)){
                       this.isPurchasePeriod = true;
-                      this.timer.finishDateString = element.zones[1].end;
+                      this.timer.finishDate = new Date(element.zones[1].end.date);
                       this.timer.forWhatText = "Tiempo restante para finalizar el segundo periodo de compra"
-                    } else if (new Date(element.zones[0].start) > new Date()) {
+                      return;
+                    } else if (new Date(element.zones[0].start.date) > new Date()) {
                       this.isPurchasePeriod = false;
-                      this.timer.finishDateString = element.zones[0].start;
+                      this.timer.finishDate = new Date(element.zones[0].start.date);
                       this.timer.forWhatText = "Tiempo restante para el comienzo del primer periodo de compra"
-                    } else if (new Date(element.zones[1].start) > new Date()) {
+                      return;
+                    } else if (new Date(element.zones[1].start.date) > new Date()) {
                       this.isPurchasePeriod = false;
-                      this.timer.finishDateString = element.zones[1].start;
+                      this.timer.finishDate = new Date(element.zones[1].start.date);
                       this.timer.forWhatText = "Tiempo restante para el comienzo del segundo periodo de compra"
+                      return;
                     } else {
                       this.isPurchasePeriod = false;
                       this.timer.forWhatText = "Se ha filaizado el periodo de compra";
+                      this.timer.finished = true;
+                      return;
                     }
                   }
                 }
