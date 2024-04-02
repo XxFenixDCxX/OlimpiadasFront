@@ -10,6 +10,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  getEspecificUser(sub: string): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/users/${sub}`);
+  }
+
   getAllUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseURL}/users`);
   }
