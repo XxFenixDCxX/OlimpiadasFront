@@ -100,6 +100,13 @@ export class TimerComponent implements OnInit {
   updateTime() {
     const diff = this.finishDate.getTime() - Date.now();
 
+    if (diff <= 0) {
+      this.finished = true;
+      this.userPage.isPurchasePeriod = false;
+      this.forWhatText = "Se ha finalizado el periodo de compra";
+      return;
+    }
+
     var secs = Math.floor((diff / 1000) % 60);
     var mins = Math.floor((diff / (1000 * 60)) % 60);
     var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
