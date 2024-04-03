@@ -1,14 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AlertController, IonicModule } from '@ionic/angular';
+
 @Component({
   selector: 'app-notis',
   standalone: true,
-  imports: [IonicModule],
+  imports: [IonicModule, CommonModule],
   templateUrl: './notis.component.html',
   styleUrls: ['./notis.component.scss'],
 })
 export class NotisComponent  {
-
+  isUnread: boolean = true;
   constructor(public alertController: AlertController) { }
 
   async showAlert(id: string) {
