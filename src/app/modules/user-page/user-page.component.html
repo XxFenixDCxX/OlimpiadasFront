@@ -21,12 +21,12 @@
         </ion-row>
         <ion-row *ngIf="isPurchasePeriod">
           <ion-col></ion-col>
-          <ion-col (click)="selectedOption(2)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
+          <ion-col (click)="selectedOption(3)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
-          <ion-col (click)="selectedOption(2)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
+          <ion-col (click)="selectedOption(4)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
           <ion-col></ion-col>
         </ion-row>
       </ion-grid>
@@ -46,7 +46,8 @@
 
   <div class="ion-page" id="main">
     <ion-content class="ion-padding">
-        <app-timer *ngIf="optionSelected === 1"></app-timer>
+        <app-timer [ngClass]="{'ion-hide': optionSelected !== 1}"></app-timer>
+        <app-notis [ngClass]="{'ion-hide': optionSelected !== 4}"></app-notis>
     </ion-content>
 
   </div>
@@ -73,12 +74,12 @@
       </ion-row>
       <ion-row *ngIf="isPurchasePeriod">
         <ion-col></ion-col>
-        <ion-col (click)="selectedOption(2)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
+        <ion-col (click)="selectedOption(3)"><ion-icon name="cart-outline"></ion-icon> Carrito</ion-col>
         <ion-col></ion-col>
       </ion-row>
       <ion-row>
         <ion-col></ion-col>
-        <ion-col (click)="selectedOption(2)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
+        <ion-col (click)="selectedOption(4)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
@@ -105,7 +106,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <app-timer *ngIf="optionSelected === 1"></app-timer>
+    <app-timer [ngClass]="{'ion-hide': optionSelected !== 1}"></app-timer>
+    <app-notis [ngClass]="{'ion-hide': optionSelected !== 4}"></app-notis>
   </ion-content>
 </div>
 </div>

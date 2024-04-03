@@ -8,11 +8,12 @@ import { of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { NotisComponent } from './components/notis/notis.component';
 
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
@@ -21,7 +22,7 @@ export class UserPageComponent implements OnInit {
   options: String[] = ["2323", "2323", "22323"];
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
-  optionSelected: number = 1;
+  optionSelected: number = 4;
   finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
   isTooSmall: boolean = false;
 
@@ -40,7 +41,8 @@ export class UserPageComponent implements OnInit {
     this.auth.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.isAuthenticated = isAuthenticated;
       if (!this.isAuthenticated) {
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
+        this.navbar.showNavbar = false;
       } else {
         this.navbar.showNavbar = false;
         this.auth.user$.subscribe(user => {
