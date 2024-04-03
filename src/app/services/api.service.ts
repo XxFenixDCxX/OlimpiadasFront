@@ -29,4 +29,17 @@ export class ApiService {
   getAllZones(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseURL}/zones`);
   }
+
+  getEspecificUserNotifications(sub: string): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/notifications/${sub}`);
+  }
+
+  getEspecificNotifications(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/notification/${id}`);
+  }
+
+  markAsReadNotification(id: number): Observable<any> {
+    return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, null);
+  }
+
 }

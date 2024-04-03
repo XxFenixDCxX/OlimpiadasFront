@@ -1,19 +1,16 @@
 <ion-content color="light">
-  <ion-card>
+  <ion-card  *ngIf="(notifications | async) === null">
     <ion-card-content>
       <ion-icon name="warning-outline" color="warning" size="large"></ion-icon>
       <p class="no-notifications-message">No hay notificaciones</p>
     </ion-card-content>
   </ion-card>
 
-  <ion-list [inset]="true">
-    <ion-item>
-      <ion-label (click)="showAlert('present-alert')">Pokémon Yellow</ion-label>
-    </ion-item>
-    <ion-item [ngClass]="{'unread-item': isUnread}">
-      <ion-label>
-        <h1>Prueba</h1>
-        <p>A message should be a short, complete sentence.</p>
+  <ion-list [inset]="true" *ngIf="(notifications | async) !== null">
+    <ion-item *ngFor="let notificacion of notifications | async" [ngClass]="{'unread-item': !notificacion.is_readed}">
+      <ion-label (click)="showAlert('present-alert', notificacion.id)">
+        <h1>{{notificacion.subject}}</h1>
+        <p>{{notificacion.short_text}}</p>
       </ion-label>
     </ion-item>
   </ion-list>
