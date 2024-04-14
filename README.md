@@ -17,6 +17,7 @@ Antes de comenzar, asegúrese de tener instalado:
 2. Navega hasta la carpeta del proyecto.
 3. Ejecuta `npm install` para instalar las dependencias.
 4. Ejecuta los pasos especificados en el repository del back para iniciar el back.
+5. Si la fecha del sorteo ha pasado(30-03-2024). En el user-page.component.ts modifica el finishLotteryDateString: Date = new Date('2024-03-30 24:00:00') para que sea posterior al dia de hoy y puedas registrar un nuevo usuario
 6. Ejecuta `ionic serve` para iniciar el servidor de desarrollo.
 
 ## Funcionalidades Principales
