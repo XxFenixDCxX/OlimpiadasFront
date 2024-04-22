@@ -6,6 +6,7 @@ import { UserPageComponent } from '../../user-page.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { EventItemComponent } from '../event-item/event-item.component';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   standalone: true,
@@ -30,7 +31,7 @@ export class TimerComponent implements OnInit {
   @Input() finishDateString: string = '2024-03-01 00:00:00';
   finishDate: Date = new Date();
 
-  constructor(private user: UserPageComponent, private auth: AuthService, private api: ApiService, private userPage: UserPageComponent) { }
+  constructor(private user: UserPageComponent, private auth: AuthService, private api: ApiService, public userPage: UserPageComponent) { }
 
   ngOnInit(): void {
     this.time = {

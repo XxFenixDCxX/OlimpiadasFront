@@ -7,5 +7,9 @@
     <div *ngIf="!finished"><strong>{{ time.minutes }}</strong> <span>Minutos</span></div>
     <div *ngIf="!finished"><strong>{{ time.seconds }}</strong> <span>Segundos</span></div>
   </div>
+  <button *ngIf="!userPage.isPurchasePeriod" class="buy-button">
+    <p class="text-buy-button">Pantalla de compra</p>
+    <ion-icon name="arrow-forward-outline" color="secondary" size="small"></ion-icon>
+  </button>
 </div>
 <app-event-item></app-event-item>
