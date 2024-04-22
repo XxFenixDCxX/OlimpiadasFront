@@ -1,6 +1,8 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
+// Importar Bootstrap después de tus estilos personalizados
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
