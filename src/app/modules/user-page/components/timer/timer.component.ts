@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { UserPageComponent } from '../../user-page.component';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
+import { EventItemComponent } from '../event-item/event-item.component';
 
 @Component({
   standalone: true,
   selector: 'app-timer',
-  imports: [IonIcon, CommonModule],
+  imports: [IonIcon, CommonModule, EventItemComponent],
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss'],
 })
