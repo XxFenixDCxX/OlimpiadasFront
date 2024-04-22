@@ -42,4 +42,15 @@ export class ApiService {
     return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, null);
   }
 
+  getEspecificEvent(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseURL}/events/${id}`);
+  }
+
+  getAllEvents(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseURL}/events`);
+  }
+
+  getEventSections(id: number): Observable<any[]> {
+    return this.http.put<any>(`${this.baseURL}/sections/${id}`, null);
+  }
 }
