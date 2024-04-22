@@ -9,11 +9,12 @@ import { NavbarComponent } from 'src/app/components';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NotisComponent } from './components/notis/notis.component';
+import { CardPaymentComponent } from './components/card-payment/card-payment.component';
 
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })

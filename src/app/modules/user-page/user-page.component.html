@@ -29,6 +29,11 @@
           <ion-col (click)="selectedOption(4)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
           <ion-col></ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col (click)="selectedOption(5)"><ion-icon name="card-outline"></ion-icon>Pago</ion-col>
+          <ion-col></ion-col>
+        </ion-row>
       </ion-grid>
     </ion-content>
     <ion-footer>
@@ -48,6 +53,7 @@
     <ion-content class="ion-padding">
         <app-timer *ngIf="optionSelected === 1"></app-timer>
         <app-notis *ngIf="optionSelected === 4"></app-notis>
+        <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
     </ion-content>
 
   </div>
@@ -82,6 +88,11 @@
         <ion-col (click)="selectedOption(4)"><ion-icon name="notifications-outline"></ion-icon> Notis</ion-col>
         <ion-col></ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col (click)="selectedOption(5)"><ion-icon name="card-outline"></ion-icon>Pago</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
     </ion-grid>
   </ion-content>
 
@@ -108,6 +119,7 @@
   <ion-content class="ion-padding">
     <app-timer *ngIf="optionSelected === 1"></app-timer>
     <app-notis *ngIf="optionSelected === 4"></app-notis>
+    <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
   </ion-content>
 </div>
 </div>
