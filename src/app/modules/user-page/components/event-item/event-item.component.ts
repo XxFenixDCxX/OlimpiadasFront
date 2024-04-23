@@ -22,6 +22,5 @@ export class EventItemComponent {
 
   goToDetails() {
     this.userPage.optionSelected = 0;
-    console.log('id',this.id)
   }
 }
