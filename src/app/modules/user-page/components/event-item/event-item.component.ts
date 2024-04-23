@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { EventDetailsComponent } from '../event-details/event-details.component';
 import { UserPageComponent } from '../../user-page.component';
+import { EventDetailsComponent } from '../event-details/event-details.component';
 @Component({
   standalone: true,
   selector: 'app-event-item',
@@ -17,11 +17,9 @@ export class EventItemComponent {
   @Input() fecha: string = '';
   @Input() id: number = 0;
 
-  constructor( private userPage: UserPageComponent, private details: EventDetailsComponent) {
-  }
+  constructor(private userPage: UserPageComponent) {}
 
   goToDetails() {
-    this.details.eventId = this.id;
     this.userPage.optionSelected = 0;
   }
 }
