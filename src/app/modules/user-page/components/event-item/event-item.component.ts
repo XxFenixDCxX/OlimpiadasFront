@@ -9,18 +9,19 @@ import { UserPageComponent } from '../../user-page.component';
   templateUrl: './event-item.component.html',
   styleUrls: ['./event-item.component.scss'],
 })
-export class EventItemComponent implements OnInit {
+export class EventItemComponent {
 
   @Input() titulo: string = '';
   @Input() descripcion: string = '';
   @Input() imagenUrl: string = '';
   @Input() fecha: string = '';
+  @Input() id: number = 0;
 
-  constructor( private userPage: UserPageComponent) { }
-
-  ngOnInit() {}
+  constructor( private userPage: UserPageComponent) {
+  }
 
   goToDetails() {
     this.userPage.optionSelected = 0;
+    console.log('id',this.id)
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventItemComponent } from '../event-item/event-item.component';
 import { CommonModule } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
+import { EventDetailsComponent } from '../event-details/event-details.component';
 
 @Component({
   standalone: true,
