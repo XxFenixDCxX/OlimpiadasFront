@@ -1,44 +1,46 @@
-<section class="product w-100">
-  <div class="product__photo">
-    <div class="photo-container">
-      <div class="photo-main">
-        <img src="https://olympics.com/images/static/sports/pictograms/v2/ath.svg" alt="green apple slice">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="product__photo">
+        <div class="photo-container">
+          <div class="photo-main">
+            <img [src]="imagenUrl" alt="green apple slice">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="product__info">
+        <div class="title">
+          <h1>{{ title }}</h1>
+          <span>Eventos deportivos</span>
+        </div>
+        <div class="price">
+          <span>{{ price1 }} € - {{price2}} €</span>
+        </div>
+        <div class="variant">
+          <h3>ELIGA UN SECCIÓN</h3>
+          <div class="custom-select">
+            <select>
+              <option value="">ELIGA UN SECCIÓN</option>
+              <option value="">Sección 1</option>
+              <option value="">Sección 2</option>
+              <option value="">Sección 3</option>
+              <option value="">Sección 4</option>
+            </select>
+          </div>
+        </div>
+        <div class="variant mt-3">
+          <h3>INTRODUZCA UN NÚMERO DE UNIDADES</h3>
+          <input class="mt-1" type="number" min="1" max="5" />
+        </div>
+        <div class="description">
+          <h3>{{descripcion}}</h3>
+          <p>A partir de {{ fecha }}</p>
+        </div>
+        <button class="buy--btn1 col-12 col-lg-6">Seguir comprando</button>
+        <button class="buy--btn2">Finalizar pedido</button>
       </div>
     </div>
   </div>
-  <div class="product__info">
-    <div class="title">
-      <h1>Delicious Apples</h1>
-      <span>Eventos deportivos</span>
-    </div>
-    <div class="price">
-      R$ <span>7.93</span>
-    </div>
-    <div class="variant">
-      <h3>SELECCIONE UN SECCIÓN</h3>
-      <div class="custom-select">
-        <select>
-          <option value="">Seleccione una sección</option>
-          <option value="">Sección 1</option>
-          <option value="">Sección 2</option>
-          <option value="">Sección 3</option>
-          <option value="">Sección 4</option>
-        </select>
-      </div>
-    </div>
-    <div class="variant mt-3">
-      <h3>SELECCIONE UN NÚMERO DE UNIDADES</h3>
-      <input type="number" min="1" max="5" />
-    </div>
-    <div class="description">
-      <h3>INFO +</h3>
-      <p>Descripción corta</p>
-      <p>A parit del 20 de abril del 2024</p>
-
-    </div>
-    <button class="buy--btn1">Seguir comprando</button>
-    <button class="buy--btn2">Finalizar pedido</button>
-    
-
-  </div>
-</section>
+</div>
