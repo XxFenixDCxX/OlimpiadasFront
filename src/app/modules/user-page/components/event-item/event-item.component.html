@@ -1,3 +1,41 @@
-<p>
-  event-item works!
-</p>
+<div class="container d-flex justify-content-center">
+  <figure class="card card-product-grid card-lg">
+    <a href="#" class="img-wrap" data-abc="true">
+      <img [src]="imagenUrl">
+    </a>
+    <figcaption class="info-wrap">
+      <div class="row">
+        <div class="col-md-9 col-xs-9">
+          <a href="#" class="title" data-abc="true">{{titulo}}</a>
+          <span class="rated">Eventos</span>
+        </div>
+        <div class="col-md-3 col-xs-3">
+          <div class="rating text-right">
+            <span class="rated">Rated 4.0/5</span>
+          </div>
+        </div>
+      </div>
+    </figcaption>
+    <div class="bottom-wrap-payment">
+      <figcaption class="info-wrap">
+        <div class="row">
+          <div class="col-md-7 col-xs-7 description-wrap">
+            <a href="#" class="title" data-abc="true">{{descripcion}}</a>
+            <span class="rated">A partir del: {{fecha}}</span>
+          </div>
+          <div class="col-md-5 col-xs-5 button-wrap">
+            <button class="button" style="width: 100%;" (click)="goToDetails()"> 
+              <span class="button-decor"></span>
+              <div class="button-content">
+                <div class="button__icon">
+                  <ion-icon name="arrow-redo-outline"></ion-icon>
+                </div>
+                <span class="button__text">Detalles</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </figcaption>
+    </div>
+  </figure>
+</div>

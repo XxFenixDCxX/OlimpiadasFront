@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let evento of eventos; let i = index;">
+      <app-event-item [titulo]="eventos[i].titulo" [descripcion]="eventos[i].descripcion" [fecha]="eventos[i].fecha" [imagenUrl]="eventos[i].imagenUrl"></app-event-item>
+      <!-- Verifica si el índice actual es divisible por 2, lo que significa que es el último elemento en la fila -->
+      <div *ngIf="(i + 1) % 2 === 0" class="w-100 d-none d-md-block"></div>
+    </div>
+  </div>
+</div>
