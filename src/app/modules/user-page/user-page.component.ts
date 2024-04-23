@@ -24,6 +24,7 @@ export class UserPageComponent implements OnInit {
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
+  isDetailsPage: boolean = true;
   finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
   isTooSmall: boolean = false;
 
