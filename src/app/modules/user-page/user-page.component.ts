@@ -10,13 +10,13 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NotisComponent } from './components/notis/notis.component';
 import { CardPaymentComponent } from './components/card-payment/card-payment.component';
-import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { EventsPageComponent } from './components/events-page/events-page.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventDetailsComponent, EventsPageComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
