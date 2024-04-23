@@ -33,18 +33,15 @@ img {
 
 
 
-
 .photo-main {
-	border-radius: 6px 6px 0 0;
 	background-color: #9be010;
-	margin-top: 3rem;
 	border-radius: 1rem;
+	height: 100%;
 	background: radial-gradient(#e5f89e, #96e001);
 
 	.controls {
 		display: flex;
 		justify-content: space-between;
-		padding: 0.8em;
 		color: #fff;
 
 		i {
@@ -54,23 +51,19 @@ img {
 
 	img {
 
-		max-width: 110%;
+		max-width: 100%;
 		filter: saturate(150%) contrast(120%) hue-rotate(10deg) drop-shadow(1px 20px 10px rgba(0, 0, 0, 0.3));
 	}
 }
 
 
-/* ----- Informations Section ----- */
-.product__info {
-	padding: 0.8em 0;
-	margin-top: 3rem;
 
-}
 
 .title {
 	h1 {
 		margin-bottom: 0.1em;
 		color: $color-primary;
+		
 		font-size: 1.5em;
 		font-weight: 900;
 	}
@@ -82,11 +75,11 @@ img {
 }
 
 .price {
-	margin: 1.5em 0;
+	margin: 0.2em 0;
 	color: $color-highlight;
-	font-size: 1.2em;
-
-	span {
+	font-size: 0.8em;
+	font-weight: bold;
+		span {
 		padding-left: 0.15em;
 		font-size: 2.9em;
 	}
@@ -149,14 +142,18 @@ img {
 	font-size: 0.8em;
 	font-weight: 700;
 	letter-spacing: 1.3px;
-	color: #e7e7e7;
-	background-color: $color-highlight;
+	color: #fff;
+	background-color: $color-secondary;
+
 	box-shadow: 2px 2px 25px -7px $color-primary;
 	cursor: pointer;
 
 	&:active {
 		transform: scale(0.97);
 	}
+}
+.product__info{
+	width: 100%;
 }
 
 .buy--btn2 {
@@ -168,7 +165,8 @@ img {
 	font-weight: 700;
 	letter-spacing: 1.3px;
 	color: #fff;
-	background-color: #ff2727;
+	background-color: $color-highlight;
+
 	box-shadow: 2px 2px 25px -7px $color-primary;
 	cursor: pointer;
 
@@ -178,7 +176,7 @@ img {
 }
 
 .custom-select {
-	min-width: 350px;
+	height: 1.7rem;
 	position: relative;
 	width: 60%;
 }
@@ -189,8 +187,8 @@ select {
 	-webkit-appearance: none;
 	/*  other styles for aesthetics */
 	width: 100%;
-	font-size: 1.15rem;
-	padding: 0.675em 6em 0.675em 1em;
+	font-size: 0.8rem;
+	padding: 0.1rem ;
 	background-color: #fff;
 	border: 1px solid #caced1;
 	border-radius: 0.25rem;

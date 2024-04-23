@@ -1,0 +1,61 @@
+<div class="card m-auto mt-5">
+  <div class="row">
+    <div class="col-md-8 cart">
+      <div class="title">
+        <div class="row">
+          <div class="col">
+            <h4><b>Carrito de compra</b></h4>
+          </div>
+          <div class="col align-self-center text-right text-muted">{{ cartItems.length }} items</div>
+        </div>
+      </div>
+
+      <!-- Lista de elementos del carrito -->
+      <ng-container *ngFor="let item of cartItems; let i = index">
+        <div class="row border-top border-bottom">
+          <div class="row main align-items-center">
+            <div class="col-2"><img class="img-fluid" [src]="item.image"></div>
+            <div class="col">
+              <div class="row text-muted">{{ item.name }}</div>
+              <div class="row">{{ item.description }}</div>
+            </div>
+            <div class="col">
+              <a (click)="decreaseQuantity(i)"  style="cursor: pointer;">-</a>
+              <a class="border">{{ item.quantity }}</a>
+              <a (click)="increaseQuantity(i)" style="cursor: pointer;">+</a>
+            </div>
+            <div class="col">&euro; {{ item.price.toFixed(2) }} <span class="close ms-5"
+                (click)="removeItem(i)" style="cursor: pointer;">&#10005;</span></div>
+          </div>
+        </div>
+      </ng-container>
+
+
+      <div class="back-to-shop" style="cursor: pointer;" (click)="goBack()"><a>&leftarrow;</a><span class="text-muted" style="cursor: pointer;" (click)="goBack()">Seguir comprando</span></div>
+    </div>
+
+    <div class="col-md-4 summary">
+      <div>
+        <h5><b>Resumen</b></h5>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col" style="padding-left:0;">ITEMS {{ cartItems.length }}</div>
+        <div class="col text-right">&euro; {{ getTotalPrice().toFixed(2) }}</div>
+      </div>
+      <form>
+        <p>SHIPPING</p>
+        <select>
+          <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+        </select>
+        <p>CÓDIGO DE DESCUENTO</p>
+        <input id="code" placeholder="Introduzca el código">
+      </form>
+      <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+        <div class="col">PRECIO TOTAL</div>
+        <div class="col text-right ms-2">&euro; {{ getTotalPrice().toFixed(2) }}</div>
+      </div>
+      <button class="btn">CHECKOUT</button>
+    </div>
+  </div>
+</div>

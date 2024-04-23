@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6">
+<div class="container main-container mt-5 ">
+  <div class="row justify-content-center ">
+    <div class="col-lg-5 p-0">
       <div class="product__photo">
         <div class="photo-container">
           <div class="photo-main">
@@ -9,9 +9,9 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
-      <div class="product__info">
-        <div class="title">
+    <div class="col-lg-5 ">
+      <div class="product__info ">
+        <div class="title mt-2">
           <h1>{{ title }}</h1>
           <span>Eventos deportivos</span>
         </div>
@@ -19,27 +19,24 @@
           <span>{{ price1 }} € - {{price2}} €</span>
         </div>
         <div class="variant">
-          <h3>ELIGA UN SECCIÓN</h3>
+          <h3>ELIGA UNA SECCIÓN</h3>
           <div class="custom-select">
-            <select>
-              <option value="">ELIGA UN SECCIÓN</option>
-              <option value="">Sección 1</option>
-              <option value="">Sección 2</option>
-              <option value="">Sección 3</option>
-              <option value="">Sección 4</option>
+            <select [(ngModel)]="selectedSection" (change)="updatePrice()">
+              <option value="">ELIGA UNA SECCIÓN</option>
+              <option *ngFor="let section of eventSections" [value]="section.id">Seccion {{section.id}}</option>
             </select>
           </div>
         </div>
         <div class="variant mt-3">
           <h3>INTRODUZCA UN NÚMERO DE UNIDADES</h3>
-          <input class="mt-1" type="number" min="1" max="5" />
+          <input class="mt-1" type="number" [(ngModel)]="units" min="1" max="5" />
         </div>
         <div class="description">
           <h3>{{descripcion}}</h3>
           <p>A partir de {{ fecha }}</p>
         </div>
-        <button class="buy--btn1 col-12 col-lg-6">Seguir comprando</button>
-        <button class="buy--btn2">Finalizar pedido</button>
+        <button class="buy--btn1 col-12 col-lg-6 " (click)="goBack()">Seguir comprando</button>
+        <button class="buy--btn2 col-12 col-lg-5 m-1" (click)="goToTheCarrito()">Finalizar pedido</button>
       </div>
     </div>
   </div>
