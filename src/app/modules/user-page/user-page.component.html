@@ -27,7 +27,7 @@
             </ion-card>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="isPurchasePeriod">
+        <ion-row *ngIf="true"><!--isPurchasePeriod-->
           <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)">
             <ion-card class="ion-text-center" color="primary" >
               <ion-icon name="card-outline" size="large"></ion-icon>
@@ -78,7 +78,6 @@
         <app-events-page *ngIf="optionSelected === 2"></app-events-page>
         <app-notis *ngIf="optionSelected === 4"></app-notis>
         <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
-        <app-events-page *ngIf="optionSelected === 2"></app-events-page>
     </ion-content>
 
   </div>
@@ -111,7 +110,7 @@
           </ion-card>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="isPurchasePeriod">
+      <ion-row *ngIf="true"><!--isPurchasePeriod-->
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)">
           <ion-card class="ion-text-center">
             <ion-icon name="card-outline" size="large"></ion-icon>
@@ -168,7 +167,6 @@
     <app-events-page *ngIf="optionSelected === 2"></app-events-page>
     <app-notis *ngIf="optionSelected === 4"></app-notis>
     <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
-    <app-events-page *ngIf="optionSelected === 2"></app-events-page>
 
   </ion-content>
 </div>
