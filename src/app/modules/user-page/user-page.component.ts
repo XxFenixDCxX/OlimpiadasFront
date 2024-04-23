@@ -23,6 +23,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
 export class UserPageComponent implements OnInit {
   @ViewChild(TimerComponent) timer!: TimerComponent;
   options: String[] = ["2323", "2323", "22323"];
+  eventItemSelected: any = null;
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;

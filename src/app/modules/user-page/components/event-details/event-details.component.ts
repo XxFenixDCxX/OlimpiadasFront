@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { UserPageComponent } from '../../user-page.component';
 
 @Component({
   standalone: true,
@@ -18,7 +19,7 @@ export class EventDetailsComponent implements OnInit {
   imagenUrl: string = 'https://olympics.com/images/static/sports/pictograms/v2/ath.svg'
   eventDetails: any[]= [] ;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private userPage: UserPageComponent) { }
 
   ngOnInit() {
     this.loadSectionData();
