@@ -17,10 +17,11 @@ export class EventItemComponent {
   @Input() fecha: string = '';
   @Input() id: number = 0;
 
-  constructor( private userPage: UserPageComponent) {
+  constructor( private userPage: UserPageComponent, private details: EventDetailsComponent) {
   }
 
   goToDetails() {
+    this.details.eventId = this.id;
     this.userPage.optionSelected = 0;
   }
 }
