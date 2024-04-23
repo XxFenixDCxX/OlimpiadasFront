@@ -57,3 +57,45 @@
 ion-icon {
   color: purple;
 }
+
+#timer .buy-button {
+  margin: 0 auto;
+  width: fit-content;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 7px 7px;  
+  background-color: #0F294A;
+  overflow: hidden;
+  outline: 3px #0F294A solid;
+  outline-offset: -3px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+  color: white;
+}
+
+#timer .buy-button .text-buy-button {
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  transition: color 200ms ease;
+}
+
+#timer.buy-button .buy-icon {
+  transition: color 200ms ease;
+}
+
+#timer .buy-button:hover {
+  background-color: white;
+}
+
+#timer .buy-button:hover .text-buy-button {
+  color: #0F294A;
+}
+
+#timer .buy-button:hover .buy-icon {
+  color: #0F294A;
+}
