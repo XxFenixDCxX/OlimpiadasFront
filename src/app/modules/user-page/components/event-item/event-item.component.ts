@@ -5,7 +5,7 @@ import { UserPageComponent } from '../../user-page.component';
 @Component({
   standalone: true,
   selector: 'app-event-item',
-  imports: [IonicModule,EventDetailsComponent],
+  imports: [IonicModule],
   templateUrl: './event-item.component.html',
   styleUrls: ['./event-item.component.scss'],
 })
@@ -21,7 +21,6 @@ export class EventItemComponent implements OnInit {
   ngOnInit() {}
 
   goToDetails() {
-    this.userPage.isDetailsPage = true;
     this.userPage.optionSelected = 0;
   }
 }

@@ -14,7 +14,7 @@
           <ion-col (click)="selectedOption(1)"><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
           <ion-col></ion-col>
         </ion-row>
-        <ion-row *ngIf="isPurchasePeriod">
+        <ion-row *ngIf="true"><!--isPurchasePeriod-->
           <ion-col></ion-col>
           <ion-col (click)="selectedOption(2)"><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
           <ion-col></ion-col>
@@ -51,9 +51,11 @@
 
   <div class="ion-page" id="main">
     <ion-content class="ion-padding">
+        <app-event-details *ngIf="optionSelected === 0"></app-event-details>
         <app-timer *ngIf="optionSelected === 1"></app-timer>
         <app-notis *ngIf="optionSelected === 4"></app-notis>
         <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
+        <app-events-page *ngIf="optionSelected === 2"></app-events-page>
     </ion-content>
 
   </div>
@@ -73,7 +75,7 @@
         <ion-col (click)="selectedOption(1)"><ion-icon name="home-outline"></ion-icon>  Inicio</ion-col>
         <ion-col></ion-col>
       </ion-row>
-      <ion-row *ngIf="isPurchasePeriod">
+      <ion-row *ngIf="true">
         <ion-col></ion-col>
         <ion-col (click)="selectedOption(2)"><ion-icon name="card-outline"></ion-icon>  Comprar</ion-col>
         <ion-col></ion-col>
@@ -117,9 +119,12 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
+    <app-event-details *ngIf="optionSelected === 0"></app-event-details>
     <app-timer *ngIf="optionSelected === 1"></app-timer>
     <app-notis *ngIf="optionSelected === 4"></app-notis>
     <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
+    <app-events-page *ngIf="optionSelected === 2"></app-events-page>
+
   </ion-content>
 </div>
 </div>
