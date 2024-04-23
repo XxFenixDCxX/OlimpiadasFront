@@ -18,7 +18,7 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.loadEventData();
-    console.log("")
+    console.log(event)
   }
 
   loadEventData() {
