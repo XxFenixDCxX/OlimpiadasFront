@@ -53,4 +53,8 @@ export class ApiService {
   getEventSections(id: number): Observable<any[]> {
     return this.http.put<any>(`${this.baseURL}/sections/${id}`, null);
   }
+
+  purchase(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseURL}/purchases`, data);
+  }
 }
