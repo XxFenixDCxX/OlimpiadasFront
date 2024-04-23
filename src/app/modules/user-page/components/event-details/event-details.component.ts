@@ -18,12 +18,12 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.loadEventData();
-    console.log(event)
   }
 
   loadEventData() {
     this.apiService.getEventSections(this.eventId).subscribe((sections: any[]) => {
       this.eventSections = sections;
+      console.log(this.eventSections);
     });
   }
 }
