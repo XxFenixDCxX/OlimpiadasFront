@@ -21,7 +21,6 @@ export class EventItemComponent implements OnInit {
   ngOnInit() {}
 
   goToDetails() {
-    this.userPage.isDetailsPage = true;
     this.userPage.optionSelected = 0;
   }
 }

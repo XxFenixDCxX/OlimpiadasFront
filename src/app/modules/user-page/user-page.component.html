@@ -9,7 +9,7 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-grid>
-        <ion-row>       
+        <ion-row>
           <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)">
             <ion-card class="ion-text-center" color="primary">
               <ion-icon name="home-outline" size="large"></ion-icon>
@@ -27,7 +27,7 @@
             </ion-card>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="isPurchasePeriod">        
+        <ion-row *ngIf="isPurchasePeriod">
           <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)">
             <ion-card class="ion-text-center" color="primary" >
               <ion-icon name="card-outline" size="large"></ion-icon>
@@ -48,7 +48,7 @@
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6"></ion-col>
       </ion-grid>
     </ion-content>
-    
+
     <ion-footer>
       <button class="button" (click)="selectedOption(5)">
         <span class="button-decor"></span>
@@ -73,7 +73,9 @@
 
   <div class="ion-page" id="main">
     <ion-content class="ion-padding">
+        <app-event-details *ngIf="optionSelected === 0"></app-event-details>
         <app-timer *ngIf="optionSelected === 1"></app-timer>
+        <app-events-page *ngIf="optionSelected === 2"></app-events-page>
         <app-notis *ngIf="optionSelected === 4"></app-notis>
         <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
     </ion-content>
@@ -90,7 +92,7 @@
     </ion-toolbar>
   </ion-header> <ion-content class="ion-padding">
     <ion-grid>
-      <ion-row>       
+      <ion-row>
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)">
           <ion-card class="ion-text-center">
             <ion-icon name="home-outline" size="large"></ion-icon>
@@ -108,7 +110,7 @@
           </ion-card>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="isPurchasePeriod">        
+      <ion-row *ngIf="isPurchasePeriod">
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)">
           <ion-card class="ion-text-center">
             <ion-icon name="card-outline" size="large"></ion-icon>
@@ -160,7 +162,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
+    <app-event-details *ngIf="optionSelected === 0"></app-event-details>
     <app-timer *ngIf="optionSelected === 1"></app-timer>
+    <app-events-page *ngIf="optionSelected === 2"></app-events-page>
     <app-notis *ngIf="optionSelected === 4"></app-notis>
     <app-card-payment *ngIf="optionSelected === 5"></app-card-payment>
   </ion-content>
