@@ -1,53 +1,43 @@
-<section class="product">
-	<div class="product__photo">
-		<div class="photo-container">
-			<div class="photo-main">
-				<div class="controls">
-					<i class="material-icons">share</i>
-					<i class="material-icons">favorite_border</i>
-				</div>
-				<img src="https://res.cloudinary.com/john-mantas/image/upload/v1537291846/codepen/delicious-apples/green-apple-with-slice.png" alt="green apple slice">
-			</div>
-			<div class="photo-album">
-				<ul>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303532/codepen/delicious-apples/half-apple.png" alt="half apple"></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303160/codepen/delicious-apples/green-apple-flipped.png" alt="green apple"></li>
-					<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png" alt="apple top"></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="product__info">
-		<div class="title">
-			<h1>Delicious Apples</h1>
-			<span>COD: 45999</span>
-		</div>
-		<div class="price">
-			R$ <span>7.93</span>
-		</div>
-		<div class="variant">
-			<h3>SELECT A COLOR</h3>
-			<ul>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302752/codepen/delicious-apples/yellow-apple.png" alt="yellow apple"></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple"></li>
-				<li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple"></li>
-			</ul>
-		</div>
-		<div class="description">
-			<h3>BENEFITS</h3>
-			<ul>
-				<li>Apples are nutricious</li>
-				<li>Apples may be good for weight loss</li>
-				<li>Apples may be good for bone health</li>
-				<li>They're linked to a lowest risk of diabetes</li>
-			</ul>
-		</div>
-		<button class="buy--btn">ADD TO CART</button>
-	</div>
-</section>
-
-<footer>
-	<p>Design from <a href="https://dribbble.com/shots/5216438-Daily-UI-012">dribbble shot</a> of <a href="https://dribbble.com/rodrigorramos">Rodrigo Ramos</a></p>
-</footer>
+<div class="container main-container mt-5 ">
+  <div class="row justify-content-center ">
+    <div class="col-lg-5 p-0">
+      <div class="product__photo">
+        <div class="photo-container">
+          <div class="photo-main">
+            <img [src]="imagenUrl" alt="green apple slice">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 ">
+      <div class="product__info ">
+        <div class="title mt-2">
+          <h1>{{ title }}</h1>
+          <span>Eventos deportivos</span>
+        </div>
+        <div class="price">
+          <span>{{ price1 }} € - {{price2}} €</span>
+        </div>
+        <div class="variant">
+          <h3>ELIGA UNA SECCIÓN</h3>
+          <div class="custom-select">
+            <select [(ngModel)]="selectedSection" (change)="updatePrice()">
+              <option value="">ELIGA UNA SECCIÓN</option>
+              <option *ngFor="let section of eventSections" [value]="section.id">Seccion {{section.id}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="variant mt-3">
+          <h3>INTRODUZCA UN NÚMERO DE UNIDADES</h3>
+          <input class="mt-1" type="number" [(ngModel)]="units" min="1" max="5" />
+        </div>
+        <div class="description">
+          <h3>{{descripcion}}</h3>
+          <p>A partir de {{ fecha }}</p>
+        </div>
+        <button class="buy--btn1 col-12 col-lg-6 " (click)="goBack()">Seguir comprando</button>
+        <button class="buy--btn2 col-12 col-lg-5 m-1" (click)="goToTheCarrito()">Finalizar pedido</button>
+      </div>
+    </div>
+  </div>
+</div>

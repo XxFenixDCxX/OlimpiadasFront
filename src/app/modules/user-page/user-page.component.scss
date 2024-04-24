@@ -93,13 +93,33 @@ ion-col {
   cursor: pointer;
 }
 
-ion-grid {
-  margin-top: 50%;
-}
-
 ion-content {
   --padding-start: 0px;
   --padding-end: 0px;
   --padding-top: 0px;
   --padding-bottom: 0px;
 }
+
+.ion-padding{
+  width: 100%;
+}
+
+.ion-padding *{
+  width: 100%;
+  margin: 0;
+}
+
+.ion-padding ion-card{
+  cursor: pointer; 
+  padding-top: 10px;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+  background-color: white;
+  color: black;
+}
+
+.ion-padding ion-card:hover{
+  transform:  scale(1.03);
+  background: #1036DE;
+  color: white;
+}
+

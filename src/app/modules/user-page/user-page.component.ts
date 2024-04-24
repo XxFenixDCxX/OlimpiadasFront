@@ -10,23 +10,28 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NotisComponent } from './components/notis/notis.component';
 import { CardPaymentComponent } from './components/card-payment/card-payment.component';
+import { EventsPageComponent } from './components/events-page/events-page.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent , CarritoComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
   @ViewChild(TimerComponent) timer!: TimerComponent;
   options: String[] = ["2323", "2323", "22323"];
+  eventItemSelected: any = null;
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
-  isDetailsPage: boolean = true;
   finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
   isTooSmall: boolean = false;
+  carrito: any[] = [];
+  purchasedElements: any[] = [];
 
   constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
 
