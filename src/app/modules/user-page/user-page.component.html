@@ -11,7 +11,7 @@
       <ion-grid>
         <ion-row>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)" (click)="setActiveTab(1)">
-            <ion-card class="ion-text-center tabs" color="primary" [ngClass]="{'active-text': selectedTab == 1}" [class.active]="selectedTab == 1">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 1">
               <ion-icon name="home-outline" size="large"></ion-icon>
               <ion-card-content>
                 Inicio
@@ -19,7 +19,7 @@
             </ion-card>
           </ion-col>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(4)" (click)="setActiveTab(4)">
-            <ion-card class="ion-text-center tabs" color="primary" [ngClass]="{'active-text': selectedTab == 4}" [class.active]="selectedTab == 4">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 4">
               <ion-icon name="notifications-outline" size="large"></ion-icon>
               <ion-card-content>
                 Notificaciones
@@ -29,7 +29,7 @@
         </ion-row>
         <ion-row>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
-            <ion-card class="ion-text-center tabs" color="primary" [ngClass]="{'active-text': selectedTab == 2}" [class.active]="selectedTab == 2">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 2">
               <ion-icon name="card-outline" size="large"></ion-icon>
               <ion-card-content>
                 Comprar
@@ -37,7 +37,7 @@
             </ion-card>
           </ion-col>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(3)" (click)="setActiveTab(3)">
-            <ion-card class="ion-text-center tabs" color="primary" [ngClass]="{'active-text': selectedTab == 3}" [class.active]="selectedTab == 3">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 3">
               <ion-icon name="cart-outline" size="large"></ion-icon>
               <ion-card-content>
                 Carrito
@@ -94,16 +94,16 @@
   </ion-header> <ion-content class="ion-padding">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)">
-          <ion-card class="ion-text-center">
+        <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)" (click)="setActiveTab(1)">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 1">
             <ion-icon name="home-outline" size="large"></ion-icon>
             <ion-card-content>
               Inicio
             </ion-card-content>
           </ion-card>
         </ion-col>
-        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(4)">
-          <ion-card class="ion-text-center">
+        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(4)" (click)="setActiveTab(4)">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 4">
             <ion-icon name="notifications-outline" size="large"></ion-icon>
             <ion-card-content>
               Notis
@@ -112,16 +112,16 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="true"><!--isPurchasePeriod-->
-        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)">
-          <ion-card class="ion-text-center">
+        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 2">
             <ion-icon name="card-outline" size="large"></ion-icon>
             <ion-card-content>
               Comprar
             </ion-card-content>
           </ion-card>
         </ion-col>
-        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(3)">
-          <ion-card class="ion-text-center">
+        <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(3)" (click)="setActiveTab(3)">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 3">
             <ion-icon name="cart-outline" size="large"></ion-icon>
             <ion-card-content>
               Carrito
