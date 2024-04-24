@@ -85,4 +85,10 @@ export class UserPageComponent implements OnInit {
   selectedOption(option: number) {
     this.optionSelected = option;
   }
+
+  selectedTab: number = 1;
+
+  setActiveTab(tabNumber: number): void {
+    this.selectedTab = tabNumber;
+  }
 }

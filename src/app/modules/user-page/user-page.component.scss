@@ -123,3 +123,26 @@ ion-content {
   color: white;
 }
 
+
+$primary-color: blue;
+.tabs {
+  font-size: 2vw;
+
+  .icons {
+    margin-right: 2vw;
+    margin-bottom: 2vw;
+    margin-top: 2vw;
+  }
+
+  &.active {
+    color: $primary-color;
+    border-bottom: solid $primary-color 1vh;
+
+    .icons {
+      color: $primary-color;
+    }
+    .active-text {
+      color: $primary-color;
+    }
+  }
+}
