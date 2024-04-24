@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserPageComponent } from '../../user-page.component';
+import { ApiService } from 'src/app/services/api.service';
+import { finalize } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -37,16 +39,21 @@ export class CarritoComponent implements OnInit {
     }
   ];
 
-  constructor(private userPage: UserPageComponent) { }
+  constructor(
+    private userPage: UserPageComponent,
+    @Inject(ApiService) private apiService: ApiService
+  ) { }
 
   ngOnInit(): void {
     this.cartItems = this.userPage.carrito;
     this.calculateTotalPrices(); 
-
   }
 
   getTotalPrice(): number {
     return this.cartItems.reduce((total, item) => total + item.totalPrice, 0); 
+  }
+  getTotalPriceWithTax(): number {
+    return this.cartItems.reduce((total, item) => (total + item.totalPrice)*1.21, 0); 
   }
 
   increaseQuantity(index: number): void {
@@ -73,8 +80,42 @@ export class CarritoComponent implements OnInit {
     this.cartItems.splice(index, 1); 
     this.calculateTotalPrices(); 
   }
+
   goBack() {
     this.userPage.optionSelected = 2;
-
   }
+
+  validAndProceed() {
+    if (this.cartItems.length === 0) {
+      alert('Su carrito está vacío.');
+      return;
+    }
+  
+    // Preparar las secciones del evento
+    const sections = this.cartItems.map(item => ({
+      [`section${item.id}`]: {
+        id: item.id,
+        slots: item.quantity
+      }
+    }));
+  
+    const purchaseData = {
+      sections: sections,
+      userId: 'userID' 
+    };
+  
+    this.apiService.purchase(purchaseData).pipe(
+      finalize(() => {
+        // Acciones finales, por ejemplo, limpiar el carrito
+        this.cartItems = [];
+        this.userPage.carrito = [];
+        alert('Compra realizada con éxito.');
+        this.goBack();
+      })
+    ).subscribe(
+      response => console.log('Compra exitosa:', response),
+      error => alert('Error realizando la compra: ' + error.message)
+    );
+  }
+  
 }

@@ -92,6 +92,11 @@ export class EventDetailsComponent implements OnInit {
       alert("El número de unidades debe estar entre 1 y 5.");
       return false;
     }
+    if (this.userPage.carrito.length >= 3) {
+      alert("No puede tener más de 3 items en el carrito.");
+      return false;
+    }
+
     const selectedSectionData = this.eventSections.find(section => section.id == this.selectedSection);
     if (selectedSectionData) {
       const cartItem = {
