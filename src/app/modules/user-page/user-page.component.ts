@@ -51,8 +51,16 @@ export class UserPageComponent implements OnInit {
       if (!this.isAuthenticated) {
         this.router.navigate(['/home']);
       } else {
-        this.auth.getAccessTokenSilently().subscribe(token => {
+        let options = {
+          audience: 'http://localhost/8100',
+          scope: 'read:records',
+          responseType: 'token',
+          algorithm: 'HS256',
+          detailedResponse: true
+        }
+        this.auth.getAccessTokenSilently(options).subscribe(token => {
           //this.api.token = token;
+          console.log(token);
           this.navbar.showNavbar = false;
           this.auth.user$.subscribe(user => {
             if (user?.sub != null) {
