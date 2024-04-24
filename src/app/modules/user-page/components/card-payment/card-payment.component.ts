@@ -1,9 +1,9 @@
 import { IonIcon } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit , Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
-import { finalize } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 @Component({
   standalone: true,
   imports: [CommonModule, IonIcon],
@@ -11,7 +11,7 @@ import { finalize } from 'rxjs';
   templateUrl: './card-payment.component.html',
   styleUrls: ['./card-payment.component.scss'],
 })
-export class CardPaymentComponent  implements OnInit {
+export class CardPaymentComponent implements OnInit {
 
   purchasedElements = this.userPage.purchasedElements;
   total = this.purchasedElements.reduce((sum, current) => sum + current.price, 0);
@@ -20,7 +20,7 @@ export class CardPaymentComponent  implements OnInit {
     private userPage: UserPageComponent,
     @Inject(ApiService) private apiService: ApiService
   ) { }
-  ngOnInit() {}
+  ngOnInit() { }
 
   proceedToPay(){
     const sections = this.purchasedElements.map(item => ({
@@ -29,7 +29,7 @@ export class CardPaymentComponent  implements OnInit {
         slots: item.quantity
       }
     }));
-  
+
     const purchaseData = {
       sections: sections,
       userId: this.userPage.userSub,
@@ -47,5 +47,4 @@ export class CardPaymentComponent  implements OnInit {
       error => alert('Error realizando la compra: ' + error.message)
     );
   }
-
 }

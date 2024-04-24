@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { AlertController, IonicModule } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -20,7 +20,9 @@ export class NotisComponent implements OnInit {
   ngOnInit(): void {
     this.auth.user$.subscribe(user => {
       if(user?.sub != null){
-        this.notifications = this.api.getEspecificUserNotifications(user.sub);
+        from(this.api.getEspecificUserNotifications(user.sub)).subscribe(notifications => {
+          this.notifications = notifications;
+        });
       }
     });
   }
@@ -33,7 +35,7 @@ export class NotisComponent implements OnInit {
   }
 
   async presentAlert(id: string, idNoti: number) {
-    this.api.getEspecificNotifications(idNoti).subscribe(noti => {
+    from(this.api.getEspecificNotifications(idNoti)).subscribe((noti: any) => {
       var text = 'Marcar como leido';
       if (noti.is_readed){
         text = "Cerrar"
@@ -46,9 +48,10 @@ export class NotisComponent implements OnInit {
         buttons: [
           {
             text: text,
-            handler: () => {
+            handler: async () => {
               if(!noti.is_readed){
-                this.api.markAsReadNotification(noti.id).subscribe();
+                const markAsReadObservable = await this.api.markAsReadNotification(noti.id);
+                markAsReadObservable.subscribe();
               }
             }
           }

@@ -123,3 +123,12 @@ ion-content {
   color: white;
 }
 
+
+.tabs {
+  font-size: 2vw;
+
+  &.active {
+    color: blue;
+    border-bottom: solid blue 1vh;
+  }
+}

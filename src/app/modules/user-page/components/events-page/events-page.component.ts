@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventItemComponent } from '../event-item/event-item.component';
 import { CommonModule } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
-import { EventDetailsComponent } from '../event-details/event-details.component';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -16,14 +16,16 @@ export class EventsPageComponent  implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getAllEvents().subscribe(data => {
-      this.eventos = data.map(evento => ({
-        id: evento.id,
-        titulo: evento.title,
-        descripcion: evento.description,
-        fecha: new Date(evento.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }),
-        imagenUrl: evento.image
-      }));
+    this.api.getAllEvents().then((observable: Observable<any[]>) => {
+      observable.subscribe((data: any[]) => {
+        this.eventos = data.map((evento: { id: number, title: string, description: string, date: string, image: string }) => ({
+          id: evento.id,
+          titulo: evento.title,
+          descripcion: evento.description,
+          fecha: new Date(evento.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }),
+          imagenUrl: evento.image
+        }));
+      });
     });
   }
 }

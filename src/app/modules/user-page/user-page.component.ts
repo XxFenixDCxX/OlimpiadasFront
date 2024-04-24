@@ -3,8 +3,8 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
-import { catchError } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
+import { Observable, from, of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent , CarritoComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
@@ -51,6 +51,31 @@ export class UserPageComponent implements OnInit {
       if (!this.isAuthenticated) {
         this.router.navigate(['/home']);
       } else {
+        this.auth.getAccessTokenSilently().subscribe(token => {
+          //this.api.token = token;
+          console.log(token);
+          this.navbar.showNavbar = false;
+          this.auth.user$.subscribe(user => {
+            if (user?.sub != null) {
+              this.userSub = user.sub;
+              from(this.api.getEspecificUser(user.sub)).pipe(
+                switchMap((userObservable: Observable<any>) => userObservable.pipe(
+                  catchError(error => {
+                    if (error.status === 404) {
+                      if (this.finishLotteryDateString < new Date()) {
+                        this.router.navigate(['/home']);
+                        alert("El sorteo ha finalizado no es posible registrarse");
+                        return of([]);
+                      }
+                      return this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname });
+                    } else {
+                      return throwError(error);
+                    }
+                  })
+                ))
+              ).subscribe();
+            }
+          });
         this.navbar.showNavbar = false;
         this.auth.user$.subscribe(user => {
           if (user?.sub != null) {
@@ -77,11 +102,18 @@ export class UserPageComponent implements OnInit {
     this.checkWindowSize();
   }
 
+
   logout() {
     this.auth.logout();
   }
 
   selectedOption(option: number) {
     this.optionSelected = option;
+  }
+
+  selectedTab: number = 1;
+
+  setActiveTab(tabNumber: number): void {
+    this.selectedTab = tabNumber;
   }
 }
