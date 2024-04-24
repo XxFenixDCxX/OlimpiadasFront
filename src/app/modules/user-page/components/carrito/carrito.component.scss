@@ -112,14 +112,17 @@ input:focus::-webkit-input-placeholder
       color:transparent;
 }
 .btn{
-    background-color: #000;
-    border-color: #000;
+    transition: transform 0.2s, background-color 0.2s, color 0.2s;
+    background-color: #1036DE;
+    border: 3px solid #1036DE;
+    box-sizing: border-box;
+    border-radius: 5px;
     color: white;
     width: 100%;
-    font-size: 0.7rem;
+    font-size: 1rem;
     margin-top: 4vh;
     padding: 1vh;
-    border-radius: 0;
+    font-weight: 600;
 }
 .btn:focus{
     box-shadow: none;
@@ -131,7 +134,8 @@ input:focus::-webkit-input-placeholder
     transition: none; 
 }
 .btn:hover{
-    color: white;
+    color: #1036DE;
+    background-color: white;
 }
 a{
     color: black; 
