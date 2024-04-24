@@ -28,7 +28,7 @@ export class UserPageComponent implements OnInit {
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
-  finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
+  finishLotteryDateString: Date = new Date('2025-03-30 24:00:00')
   isTooSmall: boolean = false;
   carrito: any[] = [];
   purchasedElements: any[] = [];
@@ -51,8 +51,16 @@ export class UserPageComponent implements OnInit {
       if (!this.isAuthenticated) {
         this.router.navigate(['/home']);
       } else {
-        this.auth.getAccessTokenSilently().subscribe(token => {
+        let options = {
+          audience: 'http://localhost/8100',
+          scope: 'read:records',
+          responseType: 'token',
+          algorithm: 'HS256',
+          detailedResponse: true
+        }
+        this.auth.getAccessTokenSilently(options).subscribe(token => {
           //this.api.token = token;
+          console.log(token);
           this.navbar.showNavbar = false;
           this.auth.user$.subscribe(user => {
             if (user?.sub != null) {
