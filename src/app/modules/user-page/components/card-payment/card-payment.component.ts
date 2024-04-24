@@ -46,6 +46,8 @@ export class CardPaymentComponent{
       console.error('Error realizando la compra:', error);
       alert(`Error realizando la compra: ${error.message}`);
       this.spinnerService.isBusySetData(false);
+    }finally{
+      this.spinnerService.isBusySetData(false);
     }
   }
 }

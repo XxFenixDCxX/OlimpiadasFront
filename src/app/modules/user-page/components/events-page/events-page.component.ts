@@ -37,6 +37,8 @@ export class EventsPageComponent  implements OnInit {
       console.error('Error fetching events:', error);
       alert(`Error fetching events: ${error.message}`);
       this.spinnerService.isBusySetData(false);
+    }finally{
+      this.spinnerService.isBusySetData(false);
     }
   }
 }
