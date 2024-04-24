@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
 import { finalize } from 'rxjs';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   standalone: true,
   selector: 'app-carrito',
-  imports: [CommonModule],
+  imports: [CommonModule,IonicModule],
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.scss']
 })
@@ -101,7 +102,7 @@ export class CarritoComponent implements OnInit {
   
     this.goToThePaymentPage();
 
-    
+
   }
   
 }

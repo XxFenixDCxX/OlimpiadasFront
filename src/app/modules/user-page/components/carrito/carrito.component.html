@@ -40,11 +40,11 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col" style="padding-left:0;">ITEMS {{ cartItems.length }}</div>
-        <div class="col text-right">&euro; {{ getTotalPrice().toFixed(2) }}</div>
+        <div class="col boldy" style="padding-left:0;">ITEMS {{ cartItems.length }}</div>
+        <div class="col text-right ">&euro; {{ getTotalPrice().toFixed(2) }}</div>
       </div>
       <div class="row">
-        <div class="col" style="padding-left:0;">IVA </div>
+        <div class="col boldy" style="padding-left:0;">IVA </div>
         <div class="col text-right"> &euro; {{ getTotalPrice().toFixed(1) }} x 21 %</div>
       </div>
       <form>
@@ -52,10 +52,21 @@
         <input id="code" placeholder="Introduzca el código">
       </form>
       <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-        <div class="col-6">PRECIO TOTAL</div>
+        <div class="col-6 boldy">PRECIO TOTAL</div>
         <div class="col text-right ms-2">&euro; {{ getTotalPriceWithTax().toFixed(2) }}</div>
       </div>
-      <button class="btn" (click)="validAndProceed()">Pagar</button>
+
+      <button class="button" (click)="validAndProceed()">
+        <span class="button-decor"></span>
+        <div class="button-content">
+            <div class="button__icon">
+              <ion-icon name="card-outline"></ion-icon>
+            </div>
+            <span class="button__text">PAGAR</span>
+        </div>
+      </button>
+
+
     </div>
   </div>
 </div>

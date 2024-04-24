@@ -155,3 +155,73 @@ a.border {
     text-decoration: none;
   }
   
+  .button {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    --clr: rgb(40, 76, 238);
+    line-height: 1;
+    border-radius: 0.1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    color: #121212;
+    cursor: pointer;
+  
+    &-decor {
+      position: absolute;
+      inset: 0;
+      background-color: var(--clr);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+      z-index: 0;
+    }
+  
+    &-content {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    &__icon {
+      width: 48px;
+      height: 40px;
+      background-color: var(--clr);
+      display: grid;
+      place-items: center;
+    }
+  
+    &__text {
+      display: inline-block;
+      transition: color 0.2s;
+      padding: 2px 1.5rem 2px;
+      padding-left: 0.75rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  
+    &:hover .button__text {
+      color: #fff;
+    }
+  
+    &:hover .button-decor {
+      transform: translate(0);
+    }
+  }
+  
+  .button__icon{
+  font-size: 24px;
+  color: white;
+  }
+
+  .boldy{
+    font-weight: bold;
+  }
