@@ -51,7 +51,7 @@ export class UserPageComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         this.auth.getAccessTokenSilently().subscribe(token => {
-          this.api.token = token;
+          //this.api.token = token;
           console.log(token);
           this.navbar.showNavbar = false;
           this.auth.user$.subscribe(user => {
