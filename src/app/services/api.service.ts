@@ -23,7 +23,6 @@ export class ApiService {
 
   async getEspecificUser(sub: string): Promise<Observable<any>> {
     const options = this.getHttpOptions();
-    console.log(options)
     return this.http.get<any>(`${this.baseURL}/users/${sub}`, options);
   }
 
