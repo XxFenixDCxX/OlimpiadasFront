@@ -32,6 +32,7 @@ export class UserPageComponent implements OnInit {
   isTooSmall: boolean = false;
   carrito: any[] = [];
   purchasedElements: any[] = [];
+  userSub: string = "";
 
   constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
 
@@ -53,6 +54,7 @@ export class UserPageComponent implements OnInit {
         this.navbar.showNavbar = false;
         this.auth.user$.subscribe(user => {
           if (user?.sub != null) {
+            this.userSub = user.sub;
             this.api.getEspecificUser(user.sub).pipe(
               catchError(error => {
                 if (error.status === 404) {

@@ -23,7 +23,6 @@ export class CardPaymentComponent  implements OnInit {
   ngOnInit() {}
 
   proceedToPay(){
-    // Preparar las secciones del evento
     const sections = this.purchasedElements.map(item => ({
       [`section${item.idSection}`]: {
         id: item.idSection,
@@ -33,7 +32,7 @@ export class CardPaymentComponent  implements OnInit {
   
     const purchaseData = {
       sections: sections,
-      userId: 'userID' 
+      userId: this.userPage.userSub,
     };
     console.log(purchaseData);
 
@@ -41,8 +40,6 @@ export class CardPaymentComponent  implements OnInit {
 
     this.apiService.purchase(purchaseData).pipe(
       finalize(() => {
-        // Acciones finales, por ejemplo, limpiar el carrito
-
         alert('Compra realizada con éxito.');
       })
     ).subscribe(
