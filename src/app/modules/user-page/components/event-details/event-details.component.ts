@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { UserPageComponent } from '../../user-page.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -30,13 +31,16 @@ export class EventDetailsComponent implements OnInit {
   }
 
   loadSectionData() {
-    this.apiService.getEventSections(this.eventId).subscribe((sections: any[]) => {
-      this.eventSections = sections;
-      console.log(this.eventSections);
-      this.price1 = this.eventSections[3].price;
-      this.price2 = this.eventSections[0].price;
+    this.apiService.getEventSections(this.eventId).then((observable: Observable<any[]>) => {
+      observable.subscribe((sections: any[]) => {
+        this.eventSections = sections;
+        console.log(this.eventSections);
+        this.price1 = this.eventSections[3].price;
+        this.price2 = this.eventSections[0].price;
+      });
     });
   }
+  
 
   loadEventData() {
     if (this.userPage.eventItemSelected) {

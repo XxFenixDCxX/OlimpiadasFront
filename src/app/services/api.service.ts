@@ -75,8 +75,10 @@ export class ApiService {
   async getEventSections(id: number): Promise<Observable<any[]>> {
     const options = await this.getHttpOptions();
     return this.http.put<any>(`${this.baseURL}/sections/${id}`, null, options);
+  }
 
-  purchase(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseURL}/purchases`, data);
+  async purchase(data: any): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.post<any>(`${this.baseURL}/purchases`, data, options);
   }
 }
