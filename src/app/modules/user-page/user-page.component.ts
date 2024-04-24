@@ -17,7 +17,7 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent , CarritoComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
@@ -50,27 +50,30 @@ export class UserPageComponent implements OnInit {
       if (!this.isAuthenticated) {
         this.router.navigate(['/home']);
       } else {
-        console.log();
-        this.navbar.showNavbar = false;
-        this.auth.user$.subscribe(user => {
-          if (user?.sub != null) {
-            from(this.api.getEspecificUser(user.sub)).pipe(
-              switchMap((userObservable: Observable<any>) => userObservable.pipe(
-                catchError(error => {
-                  if (error.status === 404) {
-                    if (this.finishLotteryDateString < new Date()) {
-                      this.router.navigate(['/home']);
-                      alert("El sorteo ha finalizado no es posible registrarse");
-                      return of([]);
+        this.auth.getAccessTokenSilently().subscribe(token => {
+          this.api.token = token;
+          console.log(token);
+          this.navbar.showNavbar = false;
+          this.auth.user$.subscribe(user => {
+            if (user?.sub != null) {
+              from(this.api.getEspecificUser(user.sub)).pipe(
+                switchMap((userObservable: Observable<any>) => userObservable.pipe(
+                  catchError(error => {
+                    if (error.status === 404) {
+                      if (this.finishLotteryDateString < new Date()) {
+                        this.router.navigate(['/home']);
+                        alert("El sorteo ha finalizado no es posible registrarse");
+                        return of([]);
+                      }
+                      return this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname });
+                    } else {
+                      return throwError(error);
                     }
-                    return this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname });
-                  } else {
-                    return throwError(error);
-                  }
-                })
-              ))
-            ).subscribe();
-          }
+                  })
+                ))
+              ).subscribe();
+            }
+          });
         });
       }
     });

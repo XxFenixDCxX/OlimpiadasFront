@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   baseURL = 'http://127.0.0.1:8000';
+  token = "";
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient) {
+  }
 
-  private async getHttpOptions() {
-    const token = await this.auth.getAccessTokenSilently().toPromise();
+  private getHttpOptions() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.token}`
       })
     };
     return httpOptions;
   }
 
   async getEspecificUser(sub: string): Promise<Observable<any>> {
-    const options = await this.getHttpOptions();
+    const options = this.getHttpOptions();
+    console.log(options)
     return this.http.get<any>(`${this.baseURL}/users/${sub}`, options);
   }
 
