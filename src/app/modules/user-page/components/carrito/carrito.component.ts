@@ -85,37 +85,23 @@ export class CarritoComponent implements OnInit {
     this.userPage.optionSelected = 2;
   }
 
+
+  goToThePaymentPage() {
+    this.userPage.purchasedElements = this.userPage.carrito ; 
+    this.cartItems = [];
+    this.userPage.carrito = [];
+    this.userPage.optionSelected = 5;
+
+  }
   validAndProceed() {
     if (this.cartItems.length === 0) {
       alert('Su carrito está vacío.');
       return;
     }
   
-    // Preparar las secciones del evento
-    const sections = this.cartItems.map(item => ({
-      [`section${item.id}`]: {
-        id: item.id,
-        slots: item.quantity
-      }
-    }));
-  
-    const purchaseData = {
-      sections: sections,
-      userId: 'userID' 
-    };
-  
-    this.apiService.purchase(purchaseData).pipe(
-      finalize(() => {
-        // Acciones finales, por ejemplo, limpiar el carrito
-        this.cartItems = [];
-        this.userPage.carrito = [];
-        alert('Compra realizada con éxito.');
-        this.goBack();
-      })
-    ).subscribe(
-      response => console.log('Compra exitosa:', response),
-      error => alert('Error realizando la compra: ' + error.message)
-    );
+    this.goToThePaymentPage();
+
+    
   }
   
 }

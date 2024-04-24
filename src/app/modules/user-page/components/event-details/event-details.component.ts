@@ -105,7 +105,8 @@ export class EventDetailsComponent implements OnInit {
         quantity: this.units,
         price: selectedSectionData.price,
         totalPrice: 0, 
-        image: this.imagenUrl
+        image: this.imagenUrl,
+        idSection: this.selectedSection
       };
       this.userPage.carrito.push(cartItem);
       alert("Producto añadido al carrito con éxito.");

@@ -31,6 +31,7 @@ export class UserPageComponent implements OnInit {
   finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
   isTooSmall: boolean = false;
   carrito: any[] = [];
+  purchasedElements: any[] = [];
 
   constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
 

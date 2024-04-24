@@ -3,7 +3,7 @@
     <form>
       <div class="products">
         <h3 class="title">Pagar</h3>
-        <div *ngFor="let product of products" class="item">
+        <div *ngFor="let product of purchasedElements" class="item">
           <span class="price">&euro; {{ product.price }}</span>
           <p class="item-name">{{ product.name }}</p>
           <p class="item-description">{{ product.description }}</p>
