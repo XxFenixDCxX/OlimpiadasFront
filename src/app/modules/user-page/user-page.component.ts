@@ -32,7 +32,7 @@ export class UserPageComponent implements OnInit {
   isTooSmall: boolean = false;
   carrito: any[] = [];
   purchasedElements: any[] = [];
-  userSub: string = "";
+  userSub: string = '';
 
   constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
 
@@ -53,12 +53,11 @@ export class UserPageComponent implements OnInit {
       } else {
         this.auth.getAccessTokenSilently().subscribe(token => {
           //this.api.token = token;
-          console.log(token);
           this.navbar.showNavbar = false;
           this.auth.user$.subscribe(user => {
             if (user?.sub != null) {
               this.userSub = user.sub;
-              from(this.api.getEspecificUser(user.sub)).pipe(
+              from(this.api.getEspecificUser(this.userSub)).pipe(
                 switchMap((userObservable: Observable<any>) => userObservable.pipe(
                   catchError(error => {
                     if (error.status === 404) {
@@ -76,26 +75,6 @@ export class UserPageComponent implements OnInit {
               ).subscribe();
             }
           });
-        this.navbar.showNavbar = false;
-        this.auth.user$.subscribe(user => {
-          if (user?.sub != null) {
-            this.userSub = user.sub;
-            this.api.getEspecificUser(user.sub).pipe(
-              catchError(error => {
-                if (error.status === 404) {
-                  if (this.finishLotteryDateString < new Date()) {
-                    this.router.navigate(['/home']);
-                    alert("El sorteo ha finalizado no es posible registrarse");
-                    return of([]);
-                  }
-                  this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname }).subscribe();
-                  return of([]);
-                } else {
-                  return throwError(error);
-                }
-              })
-            );
-          }
         });
       }
     });
@@ -117,3 +96,5 @@ export class UserPageComponent implements OnInit {
     this.selectedTab = tabNumber;
   }
 }
+
+
