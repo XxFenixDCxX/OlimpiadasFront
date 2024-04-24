@@ -1,1 +1,3 @@
-https://www.figma.com/file/yXUJj3q6sEUmmhzJUYxGD3/Olimpiadas-2024?type=design&node-id=0%3A1&mode=design&t=YhIFeHn41OKOTRop-1
+V1 -> https://www.figma.com/file/yXUJj3q6sEUmmhzJUYxGD3/Olimpiadas-2024?type=design&node-id=0%3A1&mode=design&t=YhIFeHn41OKOTRop-1
+
+V2 -> https://www.figma.com/file/cJI4wTlH50aym1UfFYSRG4/Olimpiadas-2?type=design&node-id=0-1&mode=design
