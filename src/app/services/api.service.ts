@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -8,49 +9,71 @@ import { Observable } from 'rxjs';
 export class ApiService {
   baseURL = 'http://127.0.0.1:8000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getEspecificUser(sub: string): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}/users/${sub}`);
+  private async getHttpOptions() {
+    const token = await this.auth.getAccessTokenSilently().toPromise();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return httpOptions;
   }
 
-  getAllUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseURL}/users`);
+  async getEspecificUser(sub: string): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any>(`${this.baseURL}/users/${sub}`, options);
   }
 
-  createUser(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseURL}/users`, data);
+  async getAllUsers(): Promise<Observable<any[]>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any[]>(`${this.baseURL}/users`, options);
   }
 
-  updateUserZones(sub: string, zones: number[]): Observable<any> {
-    return this.http.put<any>(`${this.baseURL}/users/${sub}`, { zones });
+  async createUser(data: any): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.post<any>(`${this.baseURL}/users`, data, options);
   }
 
-  getAllZones(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseURL}/zones`);
+  async updateUserZones(sub: string, zones: number[]): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.put<any>(`${this.baseURL}/users/${sub}`, { zones }, options);
   }
 
-  getEspecificUserNotifications(sub: string): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}/notifications/${sub}`);
+  async getAllZones(): Promise<Observable<any[]>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any[]>(`${this.baseURL}/zones`, options);
   }
 
-  getEspecificNotifications(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}/notification/${id}`);
+  async getEspecificUserNotifications(sub: string): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any>(`${this.baseURL}/notifications/${sub}`, options);
   }
 
-  markAsReadNotification(id: number): Observable<any> {
-    return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, null);
+  async getEspecificNotifications(id: number): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any>(`${this.baseURL}/notification/${id}`, options);
   }
 
-  getEspecificEvent(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseURL}/events/${id}`);
+  async markAsReadNotification(id: number): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, null, options);
   }
 
-  getAllEvents(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseURL}/events`);
+  async getEspecificEvent(id: number): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any>(`${this.baseURL}/events/${id}`, options);
   }
 
-  getEventSections(id: number): Observable<any[]> {
-    return this.http.put<any>(`${this.baseURL}/sections/${id}`, null);
+  async getAllEvents(): Promise<Observable<any[]>> {
+    const options = await this.getHttpOptions();
+    return this.http.get<any[]>(`${this.baseURL}/events`, options);
+  }
+
+  async getEventSections(id: number): Promise<Observable<any[]>> {
+    const options = await this.getHttpOptions();
+    return this.http.put<any>(`${this.baseURL}/sections/${id}`, null, options);
   }
 }

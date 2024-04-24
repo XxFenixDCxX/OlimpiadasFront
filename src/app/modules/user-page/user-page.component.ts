@@ -3,8 +3,8 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
-import { catchError } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
+import { Observable, from, of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -45,30 +45,33 @@ export class UserPageComponent implements OnInit {
       if (!this.isAuthenticated) {
         this.router.navigate(['/home']);
       } else {
+        console.log();
         this.navbar.showNavbar = false;
         this.auth.user$.subscribe(user => {
           if (user?.sub != null) {
-            this.api.getEspecificUser(user.sub).pipe(
-              catchError(error => {
-                if (error.status === 404) {
-                  if (this.finishLotteryDateString < new Date()) {
-                    this.router.navigate(['/home']);
-                    alert("El sorteo ha finalizado no es posible registrarse");
-                    return of([]);
+            from(this.api.getEspecificUser(user.sub)).pipe(
+              switchMap((userObservable: Observable<any>) => userObservable.pipe(
+                catchError(error => {
+                  if (error.status === 404) {
+                    if (this.finishLotteryDateString < new Date()) {
+                      this.router.navigate(['/home']);
+                      alert("El sorteo ha finalizado no es posible registrarse");
+                      return of([]);
+                    }
+                    return this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname });
+                  } else {
+                    return throwError(error);
                   }
-                  this.api.createUser({ sub: user.sub, email: user.email, username: user.nickname }).subscribe();
-                  return of([]);
-                } else {
-                  return throwError(error);
-                }
-              })
-            );
+                })
+              ))
+            ).subscribe();
           }
         });
       }
     });
     this.checkWindowSize();
   }
+
 
   logout() {
     this.auth.logout();
