@@ -23,7 +23,7 @@
           <div class="custom-select">
             <select [(ngModel)]="selectedSection" (change)="updatePrice()">
               <option value="">ELIGA UNA SECCIÓN</option>
-              <option *ngFor="let section of eventSections" [value]="section.id">Seccion {{section.id}}</option>
+              <option *ngFor="let section of eventSections" [value]="section.id">{{section.description}}</option>
             </select>
           </div>
         </div>
