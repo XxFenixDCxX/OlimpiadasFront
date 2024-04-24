@@ -17,8 +17,8 @@ export class AppComponent implements OnInit, OnDestroy {
       next: (result) => {
         this.isBusy = result;
       },
-      error: () => {
-        console.error();
+      error: (error) => {
+        console.error(error);
       }
     })
   }
