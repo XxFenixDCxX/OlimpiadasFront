@@ -4,6 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
+import { SpinnerService } from 'src/app/services/spinner';
 @Component({
   standalone: true,
   imports: [CommonModule, IonIcon],
@@ -11,17 +12,16 @@ import { Observable } from 'rxjs';
   templateUrl: './card-payment.component.html',
   styleUrls: ['./card-payment.component.scss'],
 })
-export class CardPaymentComponent implements OnInit {
+export class CardPaymentComponent{
 
   purchasedElements = this.userPage.purchasedElements;
   total = this.purchasedElements.reduce((sum, current) => sum + current.price, 0);
 
   constructor(
     private userPage: UserPageComponent,
-    @Inject(ApiService) private apiService: ApiService
+    @Inject(ApiService) private apiService: ApiService,
+    private spinnerService: SpinnerService,
   ) { }
-
-  ngOnInit() { }
 
   async proceedToPay() {
     const sections = this.purchasedElements.map(item => ({
@@ -37,12 +37,15 @@ export class CardPaymentComponent implements OnInit {
     };
 
     try {
-      const response = await this.apiService.purchase(purchaseData);
+      this.spinnerService.isBusySetData(true);
+      const response = await (await this.apiService.purchase(purchaseData)).toPromise();
       console.log('Compra exitosa:', response);
       alert('Compra realizada con éxito.');
-    } catch (error) {
+      this.spinnerService.isBusySetData(false);
+    } catch (error: any) {
       console.error('Error realizando la compra:', error);
-      alert('Error realizando la compra: ' + error);
+      alert(`Error realizando la compra: ${error.message}`);
+      this.spinnerService.isBusySetData(false);
     }
   }
 }
