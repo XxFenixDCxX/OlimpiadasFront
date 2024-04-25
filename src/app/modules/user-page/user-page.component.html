@@ -4,14 +4,14 @@
   <ion-menu contentId="main">
     <ion-header>
       <ion-toolbar class="boxShadow">
-        <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png">
+        <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png" alt="olympics-logo">
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <ion-grid>
         <ion-row>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)" (click)="setActiveTab(1)">
-            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 1">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab === 1">
               <ion-icon name="home-outline" size="large"></ion-icon>
               <ion-card-content>
                 Inicio
@@ -19,7 +19,7 @@
             </ion-card>
           </ion-col>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(4)" (click)="setActiveTab(4)">
-            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 4">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab === 4">
               <ion-icon name="notifications-outline" size="large"></ion-icon>
               <ion-card-content>
                 Notificaciones
@@ -29,7 +29,7 @@
         </ion-row>
         <ion-row>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
-            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 2">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab === 2">
               <ion-icon name="card-outline" size="large"></ion-icon>
               <ion-card-content>
                 Comprar
@@ -37,7 +37,7 @@
             </ion-card>
           </ion-col>
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(3)" (click)="setActiveTab(3)">
-            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab == 3">
+            <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab === 3">
               <ion-icon name="cart-outline" size="large"></ion-icon>
               <ion-card-content>
                 Carrito
@@ -50,15 +50,6 @@
     </ion-content>
 
     <ion-footer>
-      <button class="button" (click)="selectedOption(5)">
-        <span class="button-decor"></span>
-        <div class="button-content">
-            <div class="button__icon">
-              <ion-icon name="card-outline"></ion-icon>
-            </div>
-            <span class="button__text">Pago</span>
-        </div>
-      </button>
       <button class="button" (click)="logout()">
         <span class="button-decor"></span>
         <div class="button-content">
@@ -89,13 +80,13 @@
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar class="boxShadow">
-      <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png">
+      <img src="../../../assets/2024_Summer_Olympics_text_logo.svg.png" alt="olympics-logo">
     </ion-toolbar>
   </ion-header> <ion-content class="ion-padding">
     <ion-grid>
       <ion-row>
         <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(1)" (click)="setActiveTab(1)">
-          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 1">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab === 1">
             <ion-icon name="home-outline" size="large"></ion-icon>
             <ion-card-content>
               Inicio
@@ -103,7 +94,7 @@
           </ion-card>
         </ion-col>
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(4)" (click)="setActiveTab(4)">
-          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 4">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab === 4">
             <ion-icon name="notifications-outline" size="large"></ion-icon>
             <ion-card-content>
               Notis
@@ -113,7 +104,7 @@
       </ion-row>
       <ion-row *ngIf="true"><!--isPurchasePeriod-->
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
-          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 2">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab === 2">
             <ion-icon name="card-outline" size="large"></ion-icon>
             <ion-card-content>
               Comprar
@@ -121,7 +112,7 @@
           </ion-card>
         </ion-col>
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(3)" (click)="setActiveTab(3)">
-          <ion-card class="ion-text-center tabs" [class.active]="selectedTab == 3">
+          <ion-card class="ion-text-center tabs" [class.active]="selectedTab === 3">
             <ion-icon name="cart-outline" size="large"></ion-icon>
             <ion-card-content>
               Carrito
@@ -134,15 +125,6 @@
   </ion-content>
 
   <ion-footer>
-    <button class="button" (click)="selectedOption(5)">
-      <span class="button-decor"></span>
-      <div class="button-content">
-          <div class="button__icon">
-            <ion-icon name="card-outline"></ion-icon>
-          </div>
-          <span class="button__text">Pago</span>
-      </div>
-    </button>
     <button class="button" (click)="logout()">
       <span class="button-decor"></span>
       <div class="button-content">
