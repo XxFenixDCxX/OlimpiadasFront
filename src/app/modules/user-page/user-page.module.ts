@@ -5,6 +5,7 @@ import { UserPageRoutingModule } from './user-page-routing.module';
 import { IonicModule } from '@ionic/angular';
 import { TimerComponent } from 'src/app/modules/user-page/components/timer';
 import { CardPaymentComponent } from './components/card-payment/card-payment.component';
+import { SpinnerComponent } from 'src/app/components';
 
 @NgModule({
   declarations: [],
@@ -13,7 +14,8 @@ import { CardPaymentComponent } from './components/card-payment/card-payment.com
     UserPageRoutingModule,
     IonicModule,
     TimerComponent,
-    CardPaymentComponent
+    CardPaymentComponent,
+    SpinnerComponent,
   ]
 })
 export class UserPageModule { }

@@ -1,10 +1,10 @@
 import { TimerComponent } from './components/timer/timer.component';
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { ApiService } from 'src/app/services/api.service';
 import { catchError, switchMap } from 'rxjs/operators';
-import { Observable, from, of, throwError } from 'rxjs';
+import { Observable, Subscription, from, of, throwError } from 'rxjs';
 import { NavbarComponent } from 'src/app/components';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -14,14 +14,18 @@ import { EventsPageComponent } from './components/events-page/events-page.compon
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import{PaymentResponseComponent} from './components/payment-response/payment-response.component';
+import { SpinnerService } from 'src/app/services/spinner';
+import { SpinnerComponent } from "../../components/spinner/spinner.component";
+
 @Component({
   standalone: true,
   selector: 'app-user-page',
   imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
+   
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent implements OnInit, OnDestroy {
   @ViewChild(TimerComponent) timer!: TimerComponent;
   options: String[] = ["2323", "2323", "22323"];
   eventItemSelected: any = null;
@@ -34,7 +38,10 @@ export class UserPageComponent implements OnInit {
   purchasedElements: any[] = [];
   userSub: string = '';
   paymentResponse: boolean = false;
-  constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
+  isBusy: boolean = false;
+  spinner$: Subscription = new Subscription();
+
+  constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent, private spinnerService: SpinnerService) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -86,14 +93,26 @@ export class UserPageComponent implements OnInit {
       }
     });
     this.checkWindowSize();
+    this.spinner$ = this.spinnerService.isBusyObservable().subscribe({
+      next: (result) => {
+        this.isBusy = result;
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 
+  ngOnDestroy(): void {
+    this.spinner$.unsubscribe();
+  }
 
   logout() {
     this.auth.logout();
   }
 
   selectedOption(option: number) {
+    this.spinnerService.isBusySetData(false);
     this.optionSelected = option;
   }
 
