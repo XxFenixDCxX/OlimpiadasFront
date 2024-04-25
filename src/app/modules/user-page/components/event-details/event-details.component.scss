@@ -63,7 +63,7 @@ img {
 	h1 {
 		margin-bottom: 0.1em;
 		color: $color-primary;
-		
+
 		font-size: 1.5em;
 		font-weight: 900;
 	}
@@ -219,5 +219,36 @@ select {
 	top: 55%;
 }
 
+.card{
+  margin: auto;
+  max-width: 950px;
+  height: auto;
+  width: 90%;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1rem;
+  border: transparent;
+}
+@media(max-width:767px){
+  .card{
+      margin: 3vh auto;
+  }
+}
+.cart{
+  background-color: #fff;
+  padding: 4vh 5vh;
+  border-radius: 1rem;
+}
+@media(max-width:767px){
+  .cart{
+      padding: 4vh;
+      border-radius: 1rem;
+  }
+}
 
+.row{
+  margin: 0;
+}
 
+.row > *{
+  padding-right: 0 !important;
+}

@@ -4,6 +4,7 @@ import { UserPageComponent } from '../../user-page.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class EventDetailsComponent implements OnInit {
   eventId: number = this.userPage.eventItemSelected.id;
+  selectedPrice: number | undefined;
   eventSections: any[] = [];
   title: string = '';
   price1: number = 0;
@@ -40,19 +42,18 @@ export class EventDetailsComponent implements OnInit {
       });
     });
   }
-  
+
 
   loadEventData() {
     if (this.userPage.eventItemSelected) {
       this.title = this.userPage.eventItemSelected.titulo;
       this.descripcion = this.userPage.eventItemSelected.descripcion;
-      this.fecha = new Date(this.userPage.eventItemSelected.fecha).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      });
+
+      // Usa moment para parsear la fecha
+      this.fecha = this.userPage.eventItemSelected.fecha;
+
       this.imagenUrl = this.userPage.eventItemSelected.imagenUrl;
-      this.eventId = this.userPage.eventItemSelected.id; 
+      this.eventId = this.userPage.eventItemSelected.id;
 
       this.loadSectionData();
     }
@@ -61,30 +62,27 @@ export class EventDetailsComponent implements OnInit {
   goBack() {
     if(this.VerifyOrderAndAddToTheCarrito()){
       this.userPage.optionSelected = 2;
-    } 
-    
+    }
+
   }
 
   goToTheCarrito() {
     if(this.VerifyOrderAndAddToTheCarrito()){
       this.userPage.optionSelected = 3;
-    } 
+    }
   }
 
   updatePrice() {
     console.log(this.selectedSection);
     console.log(this.eventSections)
 
-    const selectedSection = this.eventSections.find(section => section.id === Number(this.selectedSection));
+  const selectedSection = this.eventSections.find(section => section.id === Number(this.selectedSection));
 
     console.log(selectedSection);
 
 
     if (selectedSection) {
-
-
-      this.price1 = selectedSection.price;
-      this.price2 = selectedSection.price;
+      this.selectedPrice = selectedSection.price;
     }
   }
   VerifyOrderAndAddToTheCarrito() {
@@ -108,7 +106,7 @@ export class EventDetailsComponent implements OnInit {
         description: this.descripcion,
         quantity: this.units,
         price: selectedSectionData.price,
-        totalPrice: 0, 
+        totalPrice: 0,
         image: this.imagenUrl,
         idSection: this.selectedSection
       };
@@ -120,6 +118,6 @@ export class EventDetailsComponent implements OnInit {
       return false ;
     }
   }
-  
-  
+
+
 }

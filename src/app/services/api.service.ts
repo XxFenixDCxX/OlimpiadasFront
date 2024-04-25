@@ -80,4 +80,9 @@ export class ApiService {
     const options = await this.getHttpOptions();
     return this.http.post<any>(`${this.baseURL}/purchases`, data, options);
   }
+
+  async validateShopCart(data: any): Promise<Observable<any>> {
+    const options = await this.getHttpOptions();
+    return this.http.post<any>(`${this.baseURL}/purchaseShopCart`, data, options);
+  }
 }
