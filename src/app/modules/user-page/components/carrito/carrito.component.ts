@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
-import { finalize } from 'rxjs';
+import { Observable, catchError, finalize, from, of, switchMap, tap } from 'rxjs';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -13,32 +13,7 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./carrito.component.scss']
 })
 export class CarritoComponent implements OnInit {
-  cartItems: any[] = [
-    { 
-        name: "Eventos deportivos",
-        description: "Atletismo ",
-        quantity: 5,
-        price: 44.00,
-        totalPrice: 0, // Añade la propiedad totalPrice para el precio total del artículo
-        image: "https://olympics.com/images/static/sports/pictograms/v2/ath.svg"
-    },
-    { 
-        name: "Eventos deportivos",
-        description: "Karate",
-        quantity: 1,
-        price: 44.00,
-        totalPrice: 0, // Añade la propiedad totalPrice para el precio total del artículo
-        image: "https://olympics.com/images/static/sports/pictograms/v2/kte.svg"
-    },
-    { 
-        name: "Eventos deportivos",
-        description: "Fútbol",
-        quantity: 1,
-        price: 44.00,
-        totalPrice: 0, 
-        image: "https://olympics.com/images/static/sports/pictograms/v2/fbl.svg"
-    }
-  ];
+  cartItems: any[] = [];
 
   constructor(
     private userPage: UserPageComponent,
@@ -48,27 +23,27 @@ export class CarritoComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.userPage.userSub);
     this.cartItems = this.userPage.carrito;
-    this.calculateTotalPrices(); 
+    this.calculateTotalPrices();
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.totalPrice, 0); 
+    return this.cartItems.reduce((total, item) => total + item.totalPrice, 0);
   }
   getTotalPriceWithTax(): number {
-    return this.cartItems.reduce((total, item) => (total + item.totalPrice)*1.21, 0); 
+    return this.cartItems.reduce((total, item) => (total + item.totalPrice)*1.21, 0);
   }
 
   increaseQuantity(index: number): void {
     if (this.cartItems[index].quantity < 5) {
       this.cartItems[index].quantity++;
-      this.calculateTotalPrices(); 
+      this.calculateTotalPrices();
     }
   }
 
   decreaseQuantity(index: number): void {
     if (this.cartItems[index].quantity > 1) {
       this.cartItems[index].quantity--;
-      this.calculateTotalPrices(); 
+      this.calculateTotalPrices();
     }
   }
 
@@ -79,17 +54,18 @@ export class CarritoComponent implements OnInit {
   }
 
   removeItem(index: number): void {
-    this.cartItems.splice(index, 1); 
-    this.calculateTotalPrices(); 
+    this.cartItems.splice(index, 1);
+    this.calculateTotalPrices();
   }
 
   goBack() {
+    this.userPage.setActiveTab(2);
     this.userPage.optionSelected = 2;
   }
 
 
   goToThePaymentPage() {
-    this.userPage.purchasedElements = this.userPage.carrito ; 
+    this.userPage.purchasedElements = this.userPage.carrito ;
     this.cartItems = [];
     this.userPage.optionSelected = 5;
 
@@ -99,10 +75,24 @@ export class CarritoComponent implements OnInit {
       alert('Su carrito está vacío.');
       return;
     }
-  
-    this.goToThePaymentPage();
 
+    const data = {
+      sub: this.userPage.userSub,
+      sections: this.cartItems.map(item => ({ id: item.idSection, slots: item.quantity }))
+    };
 
+    this.apiService.validateShopCart(data).then((response) => {
+      response.subscribe({
+        next: () => {
+          this.goToThePaymentPage();
+          this.userPage.setActiveTab(0);
+        },
+        error: (error: any) => {
+          if (error.status === 400) {
+            alert(error.error.error);
+          }
+        }
+      });
+    });
   }
-  
 }
