@@ -35,7 +35,6 @@ export class EventDetailsComponent implements OnInit {
     this.apiService.getEventSections(this.eventId).then((observable: Observable<any[]>) => {
       observable.subscribe((sections: any[]) => {
         this.eventSections = sections;
-        console.log(this.eventSections);
         this.price1 = this.eventSections[3].price;
         this.price2 = this.eventSections[0].price;
       });
@@ -71,14 +70,8 @@ export class EventDetailsComponent implements OnInit {
   }
 
   updatePrice() {
-    console.log(this.selectedSection);
-    console.log(this.eventSections)
 
   const selectedSection = this.eventSections.find(section => section.id === Number(this.selectedSection));
-
-    console.log(selectedSection);
-
-
     if (selectedSection) {
       this.selectedPrice = selectedSection.price;
     }

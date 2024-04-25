@@ -24,7 +24,7 @@ export class CardPaymentComponent{
   ) { }
 
   async proceedToPay() {
-    
+
     const sections = this.purchasedElements.map(item => ({
       [`section${item.idSection}`]: {
         id: item.idSection,
@@ -40,7 +40,6 @@ export class CardPaymentComponent{
     try {
       this.spinnerService.isBusySetData(true);
       const response = await firstValueFrom(await this.apiService.purchase(purchaseData));
-      console.log('Compra exitosa:', response);
       alert('Compra realizada con éxito.');
       this.userPage.carrito = [];
       this.spinnerService.isBusySetData(false);

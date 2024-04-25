@@ -28,14 +28,11 @@ export class NotisComponent implements OnInit {
   }
 
   async showAlert(id: string, idNoti: number) {
-    const alert = await this.alertController.getTop();
-    if (!alert) {
-      this.presentAlert(id, idNoti);
-    }
+    this.presentAlert(id, idNoti);
   }
 
   async presentAlert(id: string, idNoti: number) {
-    from(this.api.getEspecificNotifications(idNoti)).subscribe((noti: any) => {
+    this.api.getEspecificNotifications(idNoti).then(response => response.subscribe((noti: any) => {
       var text = 'Marcar como leido';
       if (noti.is_readed){
         text = "Cerrar"
@@ -50,8 +47,9 @@ export class NotisComponent implements OnInit {
             text: text,
             handler: async () => {
               if(!noti.is_readed){
-                const markAsReadObservable = await this.api.markAsReadNotification(noti.id);
-                markAsReadObservable.subscribe();
+                this.api.markAsReadNotification(noti.id).then(response => response.subscribe(() => {
+                  this.ngOnInit();
+              }));
               }
             }
           }
@@ -59,6 +57,6 @@ export class NotisComponent implements OnInit {
       }).then(alert => {
         alert.present();
       });
-    });
+    }));
   }
 }

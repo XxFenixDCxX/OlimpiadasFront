@@ -21,7 +21,6 @@ export class CarritoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.userPage.userSub);
     this.cartItems = this.userPage.carrito;
     this.calculateTotalPrices();
   }
