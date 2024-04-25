@@ -20,10 +20,10 @@ import { SpinnerComponent } from "../../components/spinner/spinner.component";
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent, SpinnerComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
-   
+
 })
 export class UserPageComponent implements OnInit, OnDestroy {
   @ViewChild(TimerComponent) timer!: TimerComponent;
