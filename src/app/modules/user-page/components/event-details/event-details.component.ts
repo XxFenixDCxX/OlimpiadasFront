@@ -23,7 +23,7 @@ export class EventDetailsComponent implements OnInit {
   descripcion: string = '';
   fecha: string = '20 de abril del 2024';
   imagenUrl: string = 'https://olympics.com/images/static/sports/pictograms/v2/ath.svg';
-  selectedSection: number | undefined; // Variable para almacenar la sección seleccionada
+  selectedSection: number | undefined;
 
   constructor(private apiService: ApiService, private userPage: UserPageComponent) {}
 
@@ -35,7 +35,6 @@ export class EventDetailsComponent implements OnInit {
     this.apiService.getEventSections(this.eventId).then((observable: Observable<any[]>) => {
       observable.subscribe((sections: any[]) => {
         this.eventSections = sections;
-        console.log(this.eventSections);
         this.price1 = this.eventSections[3].price;
         this.price2 = this.eventSections[0].price;
       });
@@ -47,10 +46,7 @@ export class EventDetailsComponent implements OnInit {
     if (this.userPage.eventItemSelected) {
       this.title = this.userPage.eventItemSelected.titulo;
       this.descripcion = this.userPage.eventItemSelected.descripcion;
-
-      // Usa moment para parsear la fecha
       this.fecha = this.userPage.eventItemSelected.fecha;
-
       this.imagenUrl = this.userPage.eventItemSelected.imagenUrl;
       this.eventId = this.userPage.eventItemSelected.id;
 
@@ -60,6 +56,7 @@ export class EventDetailsComponent implements OnInit {
 
   goBack() {
     if(this.VerifyOrderAndAddToTheCarrito()){
+      this.userPage.setActiveTab(2);
       this.userPage.optionSelected = 2;
     }
 
@@ -67,19 +64,14 @@ export class EventDetailsComponent implements OnInit {
 
   goToTheCarrito() {
     if(this.VerifyOrderAndAddToTheCarrito()){
+      this.userPage.setActiveTab(3);
       this.userPage.optionSelected = 3;
     }
   }
 
   updatePrice() {
-    console.log(this.selectedSection);
-    console.log(this.eventSections)
 
   const selectedSection = this.eventSections.find(section => section.id === Number(this.selectedSection));
-
-    console.log(selectedSection);
-
-
     if (selectedSection) {
       this.selectedPrice = selectedSection.price;
     }

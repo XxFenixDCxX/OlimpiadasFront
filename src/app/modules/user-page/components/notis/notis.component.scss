@@ -1,10 +1,13 @@
 ion-label {
   cursor: pointer;
 }
-ion-card {
-  margin-left: 10%;
-  margin-right: 10%;
+ion-card, ion-list{
+  margin-left: 10% !important;
+  margin-right: 10% !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0px !important;
 }
 .unread-item {
-  --background: #e5f1fb; /* Color de fondo para elementos no leídos */
+  --background: #e5f1fb;
 }

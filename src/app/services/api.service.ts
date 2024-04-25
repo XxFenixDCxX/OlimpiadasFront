@@ -58,7 +58,7 @@ export class ApiService {
 
   async markAsReadNotification(id: number): Promise<Observable<any>> {
     const options = await this.getHttpOptions();
-    return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, options);
+    return this.http.put<any>(`${this.baseURL}/notification/mark-as-read/${id}`, null,options);
   }
 
   async getEspecificEvent(id: number): Promise<Observable<any>> {
