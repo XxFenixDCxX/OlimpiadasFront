@@ -115,6 +115,7 @@ ion-content {
   transition: transform 0.2s, background-color 0.2s, color 0.2s;
   background-color: white;
   color: black;
+  box-sizing: border-box;
 }
 
 .ion-padding ion-card:hover{
@@ -126,10 +127,11 @@ ion-content {
 
 .tabs {
   font-size: 2vw;
+  border-bottom: 1vh solid transparent;
 
   &.active {
     color: blue;
-    border-bottom: solid blue 1vh;
+    border-bottom: 1vh solid blue ;
   }
 }
 
