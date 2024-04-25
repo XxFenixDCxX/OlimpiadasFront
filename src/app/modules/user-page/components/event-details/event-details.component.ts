@@ -4,7 +4,6 @@ import { UserPageComponent } from '../../user-page.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
 
 @Component({
   standalone: true,
