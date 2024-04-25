@@ -29,9 +29,15 @@ export class EventsPageComponent  implements OnInit {
             imagenUrl: evento.image
           }));
         })
-      ).subscribe((data) => {
-        this.eventos = data;
-        this.spinnerService.isBusySetData(false);
+      ).subscribe({
+        next: (data) => {
+          this.eventos = data;
+          this.spinnerService.isBusySetData(false);
+        },
+        error: (error) => {
+          console.error(error);
+          this.spinnerService.isBusySetData(false);
+        }
       });
     } catch (error: any) {
       console.error('Error fetching events:', error);

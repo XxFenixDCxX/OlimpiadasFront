@@ -7,23 +7,4 @@ import { Subscription } from 'rxjs';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  isBusy: boolean = false;
-  spinner$: Subscription = new Subscription(); 
-  constructor(private spinnerService: SpinnerService) {}
-  
-  ngOnInit(): void {
-    this.spinner$ = this.spinnerService.isBusyObservable().subscribe({
-      next: (result) => {
-        this.isBusy = result;
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.spinner$.unsubscribe();
-  }
-}
+export class AppComponent {}
