@@ -132,3 +132,16 @@ ion-content {
     border-bottom: solid blue 1vh;
   }
 }
+
+.cart-item-count {
+  position: relative; /* Cambia a 'relative' */
+  top: 0;
+  right: 0;
+  width: 20%; /* Aumenta el ancho del círculo */
+  background-color: #ff0000; /* Cambia el color de fondo según tus preferencias */
+  color: #ffffff; /* Cambia el color del texto según tus preferencias */
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-size: 12px;
+}
+

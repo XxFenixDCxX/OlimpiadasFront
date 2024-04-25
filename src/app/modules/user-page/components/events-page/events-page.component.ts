@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { map, Observable } from 'rxjs';
 import { SpinnerService } from 'src/app/services/spinner';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   standalone: true,
   selector: 'app-events-page',
-  imports: [EventItemComponent,CommonModule],
+  imports: [EventItemComponent,CommonModule,IonicModule],
   templateUrl: './events-page.component.html',
   styleUrls: ['./events-page.component.scss'],
 })
 export class EventsPageComponent  implements OnInit {
   eventos: any[] = [];
   constructor(private api: ApiService, private spinnerService: SpinnerService) { }
-
   async ngOnInit() {
     try {
       this.spinnerService.isBusySetData(true);
@@ -29,9 +29,15 @@ export class EventsPageComponent  implements OnInit {
             imagenUrl: evento.image
           }));
         })
-      ).subscribe((data) => {
-        this.eventos = data;
-        this.spinnerService.isBusySetData(false);
+      ).subscribe({
+        next: (data) => {
+          this.eventos = data;
+          this.spinnerService.isBusySetData(false);
+        },
+        error: (error) => {
+          console.error(error);
+          this.spinnerService.isBusySetData(false);
+        }
       });
     } catch (error: any) {
       console.error('Error fetching events:', error);

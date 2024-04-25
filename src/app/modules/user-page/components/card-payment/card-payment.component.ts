@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, Inject } from '@angular/core';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
-import { Observable } from 'rxjs';
+import { first, firstValueFrom, Observable } from 'rxjs';
 import { SpinnerService } from 'src/app/services/spinner';
 @Component({
   standalone: true,
@@ -24,6 +24,7 @@ export class CardPaymentComponent{
   ) { }
 
   async proceedToPay() {
+    
     const sections = this.purchasedElements.map(item => ({
       [`section${item.idSection}`]: {
         id: item.idSection,
@@ -38,14 +39,19 @@ export class CardPaymentComponent{
 
     try {
       this.spinnerService.isBusySetData(true);
-      const response = await (await this.apiService.purchase(purchaseData)).toPromise();
+      const response = await firstValueFrom(await this.apiService.purchase(purchaseData));
       console.log('Compra exitosa:', response);
       alert('Compra realizada con éxito.');
+      this.userPage.carrito = [];
       this.spinnerService.isBusySetData(false);
+      this.userPage.paymentResponse = true;
+      this.userPage.optionSelected = 6;
     } catch (error: any) {
       console.error('Error realizando la compra:', error);
       alert(`Error realizando la compra: ${error.message}`);
       this.spinnerService.isBusySetData(false);
+      this.userPage.paymentResponse = false;
+      this.userPage.optionSelected = 6;
     }
   }
 }

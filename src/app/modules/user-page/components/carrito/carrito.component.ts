@@ -46,6 +46,7 @@ export class CarritoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.userPage.userSub);
     this.cartItems = this.userPage.carrito;
     this.calculateTotalPrices(); 
   }
@@ -90,7 +91,6 @@ export class CarritoComponent implements OnInit {
   goToThePaymentPage() {
     this.userPage.purchasedElements = this.userPage.carrito ; 
     this.cartItems = [];
-    this.userPage.carrito = [];
     this.userPage.optionSelected = 5;
 
   }

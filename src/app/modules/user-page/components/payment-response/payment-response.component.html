@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <!-- Primer card: Pago exitoso -->
+      <div *ngIf="isSuccess" class="message-box _success">
+        <img src="../../../../../assets/check_14025690.png" alt="Ícono de éxito" />
+
+        <h2>Tu pago se realizó con éxito</h2>
+        <p>Gracias por tu pago. Nos pondremos en contacto contigo pronto para más detalles.</p>
+      </div>
+      <!-- Segundo card: Pago fallido -->
+      <div *ngIf="!isSuccess" class="message-box _success _failed">
+        <img src="../../../../../assets/failed.png" alt="Ícono de falla" />
+
+        <h2>Tu pago no se pudo procesar</h2>
+        <p>Inténtalo de nuevo más tarde.</p>
+      </div>
+    </div>
+  </div>
+</div>
