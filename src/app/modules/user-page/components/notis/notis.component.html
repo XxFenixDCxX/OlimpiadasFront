@@ -9,7 +9,7 @@
   <ion-list [inset]="true" *ngIf="(notifications | async) !== null">
     <ion-item *ngFor="let notificacion of notifications | async" [ngClass]="{'unread-item': !notificacion.is_readed}">
       <ion-label (click)="showAlert('present-alert', notificacion.id)">
-        <h1>{{notificacion.subject}}</h1>
+        <h1><ion-icon name="notifications-circle-outline" color="warning"></ion-icon> {{notificacion.subject}}</h1>
         <p>{{notificacion.short_text}}</p>
       </ion-label>
     </ion-item>
