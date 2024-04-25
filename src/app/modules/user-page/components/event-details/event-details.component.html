@@ -1,42 +1,49 @@
-<div class="container main-container mt-5 ">
-  <div class="row justify-content-center ">
-    <div class="col-lg-5 p-0">
-      <div class="product__photo">
-        <div class="photo-container">
-          <div class="photo-main">
-            <img [src]="imagenUrl" alt="green apple slice">
+<div class="card m-auto mt-5">
+  <div class="row">
+    <div class="cart">
+      <div class="container main-container mt-5 ">
+        <div class="row justify-content-around">
+          <div class="col-lg-5 p-0">
+            <div class="product__photo">
+              <div class="photo-container">
+                <div class="photo-main">
+                  <img [src]="imagenUrl" alt="green apple slice">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 ">
+            <div class="product__info ">
+              <div class="title mt-2">
+                <h1>{{ title }}</h1>
+                <span>Eventos deportivos</span>
+              </div>
+              <div class="price">
+                <span *ngIf="!selectedPrice">{{ price1 }} € - {{price2}} €</span>
+                <span *ngIf="selectedPrice">{{ selectedPrice }} €</span>
+              </div>
+              <div class="variant">
+                <h3>ELIGA UNA SECCIÓN</h3>
+                <div class="custom-select">
+                  <select [(ngModel)]="selectedSection" (change)="updatePrice()">
+                    <option value="">ELIGA UNA SECCIÓN</option>
+                    <option *ngFor="let section of eventSections" [value]="section.id">{{section.description}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="variant mt-3">
+                <h3>INTRODUZCA UN NÚMERO DE UNIDADES</h3>
+                <input class="mt-1" type="number" [(ngModel)]="units" min="1" max="5" />
+              </div>
+              <div class="description">
+                <h3>{{descripcion}}</h3>
+                <p>A partir de {{ fecha }}</p>
+              </div>
+              <button class="buy--btn1 col-12 col-lg-6" (click)="goBack()">Seguir comprando</button>
+              <button class="buy--btn2 col-12 col-lg-5 m-1" (click)="goToTheCarrito()">Finalizar pedido</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-lg-5 ">
-      <div class="product__info ">
-        <div class="title mt-2">
-          <h1>{{ title }}</h1>
-          <span>Eventos deportivos</span>
-        </div>
-        <div class="price">
-          <span>{{ price1 }} € - {{price2}} €</span>
-        </div>
-        <div class="variant">
-          <h3>ELIGA UNA SECCIÓN</h3>
-          <div class="custom-select">
-            <select [(ngModel)]="selectedSection" (change)="updatePrice()">
-              <option value="">ELIGA UNA SECCIÓN</option>
-              <option *ngFor="let section of eventSections" [value]="section.id">{{section.description}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="variant mt-3">
-          <h3>INTRODUZCA UN NÚMERO DE UNIDADES</h3>
-          <input class="mt-1" type="number" [(ngModel)]="units" min="1" max="5" />
-        </div>
-        <div class="description">
-          <h3>{{descripcion}}</h3>
-          <p>A partir de {{ fecha }}</p>
-        </div>
-        <button class="buy--btn1 col-12 col-lg-6 " (click)="goBack()">Seguir comprando</button>
-        <button class="buy--btn2 col-12 col-lg-5 m-1" (click)="goToTheCarrito()">Finalizar pedido</button>
       </div>
     </div>
   </div>

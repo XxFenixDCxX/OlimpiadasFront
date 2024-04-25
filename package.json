@@ -32,6 +32,7 @@
     "bootstrap": "^5.3.3",
     "component": "^1.1.0",
     "ionicons": "^7.0.0",
+    "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -69,5 +70,4 @@
   "config": {
     "ionic_sass": "./sass.config.js"
   }
-
 }
