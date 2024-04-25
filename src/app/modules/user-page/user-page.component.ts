@@ -20,7 +20,7 @@ import { SpinnerComponent } from "../../components/spinner/spinner.component";
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent,SpinnerComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
    
@@ -32,7 +32,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
   optionSelected: number = 1;
-  finishLotteryDateString: Date = new Date('2024-03-30 24:00:00')
+  finishLotteryDateString: Date = new Date('2025-03-30 24:00:00')
   isTooSmall: boolean = false;
   carrito: any[] = [];
   purchasedElements: any[] = [];
