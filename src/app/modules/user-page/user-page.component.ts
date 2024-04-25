@@ -13,11 +13,11 @@ import { CardPaymentComponent } from './components/card-payment/card-payment.com
 import { EventsPageComponent } from './components/events-page/events-page.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
-
+import{PaymentResponseComponent} from './components/payment-response/payment-response.component';
 @Component({
   standalone: true,
   selector: 'app-user-page',
-  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent],
+  imports: [IonicModule, TimerComponent, CommonModule, NotisComponent, CardPaymentComponent, EventsPageComponent, EventDetailsComponent, CarritoComponent, PaymentResponseComponent],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
@@ -33,7 +33,7 @@ export class UserPageComponent implements OnInit {
   carrito: any[] = [];
   purchasedElements: any[] = [];
   userSub: string = '';
-
+  paymentResponse: boolean = false;
   constructor(private auth: AuthService, private router: Router, private api: ApiService, private navbar: NavbarComponent) { }
 
   @HostListener('window:resize', ['$event'])
@@ -101,6 +101,10 @@ export class UserPageComponent implements OnInit {
 
   setActiveTab(tabNumber: number): void {
     this.selectedTab = tabNumber;
+  }
+
+  getCarritoItemCount(): number {
+    return this.carrito.length;
   }
 }
 
