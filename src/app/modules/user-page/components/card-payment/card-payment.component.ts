@@ -23,6 +23,18 @@ export class CardPaymentComponent{
     private spinnerService: SpinnerService,
   ) { }
 
+  async submitForm(event: Event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+    // Verifica si el formulario es válido antes de continuar
+    const form = event.target as HTMLFormElement;
+    if (form.checkValidity()) {
+        await this.proceedToPay();
+    } else {
+        alert('Por favor, complete todos los campos requeridos.');
+    }
+  }
+
   async proceedToPay() {
 
     const sections = this.purchasedElements.map(item => ({
