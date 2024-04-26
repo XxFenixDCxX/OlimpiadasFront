@@ -15,7 +15,7 @@ import { SpinnerService } from 'src/app/services/spinner';
 export class CardPaymentComponent{
 
   purchasedElements = this.userPage.purchasedElements;
-  total = this.purchasedElements.reduce((sum, current) => sum + current.price, 0);
+  total = this.purchasedElements.reduce((sum, current) => sum + current.totalPrice, 0);
 
   constructor(
     private userPage: UserPageComponent,

@@ -4,7 +4,7 @@
       <div class="products">
         <h3 class="title">Pagar</h3>
         <div *ngFor="let product of purchasedElements" class="item">
-          <span class="price">&euro; {{ product.price }}</span>
+          <span class="price">&euro; {{ product.totalPrice }}</span>
           <p class="item-name">{{ product.name }}</p>
           <p class="item-description">{{ product.description }}</p>
         </div>

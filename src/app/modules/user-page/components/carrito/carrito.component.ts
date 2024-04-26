@@ -65,6 +65,7 @@ export class CarritoComponent implements OnInit {
 
   goToThePaymentPage() {
     this.userPage.purchasedElements = this.userPage.carrito ;
+    console.log(this.userPage.purchasedElements[0]);
     this.cartItems = [];
     this.userPage.optionSelected = 5;
 
