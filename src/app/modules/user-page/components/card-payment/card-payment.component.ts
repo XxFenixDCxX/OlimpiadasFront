@@ -1,13 +1,15 @@
 import { IonIcon } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { UserPageComponent } from '../../user-page.component';
 import { ApiService } from 'src/app/services/api.service';
-import { first, firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { SpinnerService } from 'src/app/services/spinner';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   standalone: true,
-  imports: [CommonModule, IonIcon],
+  imports: [CommonModule, IonIcon, FormsModule],
   selector: 'app-card-payment',
   templateUrl: './card-payment.component.html',
   styleUrls: ['./card-payment.component.scss'],
@@ -16,14 +18,22 @@ export class CardPaymentComponent{
 
   purchasedElements = this.userPage.purchasedElements;
   total = this.purchasedElements.reduce((sum, current) => sum + current.totalPrice, 0);
+  titular: string = "";
+  cardNumber: string = "";
+  expirationMonth: string = "";
+  expirationYear: string = "";
+  cvv: string = "";
 
-  constructor(
-    private userPage: UserPageComponent,
+
+  constructor(private userPage: UserPageComponent,
     @Inject(ApiService) private apiService: ApiService,
-    private spinnerService: SpinnerService,
-  ) { }
+    private spinnerService: SpinnerService,) {}
 
   async proceedToPay() {
+    if (this.titular === "" || this.cardNumber === "" || this.expirationMonth === "" || this.expirationYear === "" || this.cvv === "") {
+      alert('Por favor, rellena todos los campos correctamente.');
+      return;
+    }
 
     const sections = this.purchasedElements.map(item => ({
       [`section${item.idSection}`]: {
