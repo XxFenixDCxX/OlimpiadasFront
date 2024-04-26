@@ -27,7 +27,7 @@
             </ion-card>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row *ngIf="isPurchasePeriod">
           <ion-col class="tabs" size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
             <ion-card class="ion-text-center tabs" color="primary" [class.active]="selectedTab === 2">
               <ion-icon name="card-outline" size="large"></ion-icon>
@@ -104,7 +104,7 @@
           </ion-card>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="true"><!--isPurchasePeriod-->
+      <ion-row *ngIf="isPurchasePeriod"><!--isPurchasePeriod-->
         <ion-col size="12" size-md="12" size-lg="6" size-xl="6" (click)="selectedOption(2)" (click)="setActiveTab(2)">
           <ion-card class="ion-text-center tabs" [class.active]="selectedTab === 2">
             <ion-icon name="card-outline" size="large"></ion-icon>
