@@ -43,11 +43,38 @@ export class TimerComponent implements OnInit {
       if (isAuthenticated) {
         this.auth.user$.subscribe(user => {
           if (user?.sub != null) {
-            from(this.api.getEspecificUser(user.sub)).subscribe((user: any) => {
-              if (user.zones.length != 0) {
-                // Rest of your code...
+            this.api.getEspecificUser(user.sub).then(response => response.subscribe((user: any) => {
+              if (user.zones.lenght != 0) {
+                if (new Date("2024-03-30 00:00:00") < new Date()) {
+                  if (new Date(user.zones[0].start) <= new Date() && new Date() <= new Date(user.zones[0].end)) {
+                    this.userPage.isPurchasePeriod = true;
+                    this.finishDate = new Date(user.zones[0].end);
+                    this.forWhatText = "Tiempo restante para finalizar el primer periodo de compra"
+                    return;
+                  } else if (new Date(user.zones[1].start) <= new Date() && new Date() <= new Date(user.zones[1].end)) {
+                    this.userPage.isPurchasePeriod = true;
+                    this.finishDate = new Date(user.zones[1].end);
+                    this.forWhatText = "Tiempo restante para finalizar el segundo periodo de compra"
+                    return;
+                  } else if (new Date(user.zones[0].start) > new Date()) {
+                    this.userPage.isPurchasePeriod = false;
+                    this.finishDate = new Date(user.zones[0].start);
+                    this.forWhatText = "Tiempo restante para el comienzo del primer periodo de compra"
+                    return;
+                  } else if (new Date(user.zones[1].start) > new Date()) {
+                    this.userPage.isPurchasePeriod = false;
+                    this.finishDate = new Date(user.zones[1].start);
+                    this.forWhatText = "Tiempo restante para el comienzo del segundo periodo de compra"
+                    return;
+                  } else {
+                    this.userPage.isPurchasePeriod = false;
+                    this.forWhatText = "Se ha filaizado el periodo de compra";
+                    this.finished = true;
+                    return;
+                  }
+                }
               }
-            });
+            }));
           }
         });
       }

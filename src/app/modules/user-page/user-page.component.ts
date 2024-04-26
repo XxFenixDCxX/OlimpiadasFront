@@ -31,7 +31,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   eventItemSelected: any = null;
   isAuthenticated: boolean = false;
   isPurchasePeriod: boolean = false;
-  optionSelected: number = 1;
+  optionSelected: number = -1;
   finishLotteryDateString: Date = new Date('2025-03-30 24:00:00')
   isTooSmall: boolean = false;
   carrito: any[] = [];
@@ -67,6 +67,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
         }
         this.auth.getAccessTokenSilently(options).subscribe((token: any)=> {
           this.api.token = token.id_token;
+          this.optionSelected = 1;
           this.navbar.showNavbar = false;
           this.auth.user$.subscribe(user => {
             if (user?.sub != null) {
